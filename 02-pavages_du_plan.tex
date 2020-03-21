@@ -1,5 +1,373 @@
 \section{Pavages du plan}
-
 \subsection{Tuiles}
+
+% def:tuile
+\begin{definition}
+	Une \emph{tuile} de $\R^2$ est un sous-ensemble $\mathbf{T} \subset \R^2$ qui est
+compact (fermé, borné) et d'intérieur $\interior{\mathbf{T}}$ non vide.
+\end{definition}
+
+% def:simplexe
+\begin{definition}
+	Un \emph{simplexe} $\varsigma$ de $\R^2$ est le triangle plein
+	determiné par trois points
+	distincts non-alignés $\vec{v}_0, \vec{v}_1, \vec{v}_2 \in \R^2$. C'est l'ensemble
+	\begin{equation*}
+		\varsigma = \overline{\vec{v}_0\vec{v}_1\vec{v}_2} := \{\alpha_0\vec{v}_0
+			+ \alpha_1\vec{v}_1 + \alpha_2\vec{v}_2\  |\  \alpha_0, \alpha_1,
+			\alpha_2 \in \R^*_+, \alpha_0 + \alpha_1 + \alpha_2 = 1\}
+	\end{equation*}
+	Les faces de $\varsigma$ (ou encore arêtes) sont les segments $[\vec{v}_i,
+	\vec{v}_j], i \neq j$. Les sommets du simplexe sont les points $\vec{v}_0,
+	\vec{v}_1, \vec{v}_2$.
+\end{definition}
+
+% def:polygone-plein
+\begin{definition}
+	Un \emph{polygone plein} $\mathbf{P}$ est une reunion finie, non-vide de simplexes
+	$\varsigma_1,
+	\dots, \varsigma_n \subset \R^2$ tous distincts
+	\begin{equation*}
+		\mathbf{P} := \bigcup_{i=1}^n\varsigma_i
+	\end{equation*}
+	Dont l'interieur $\interior{\mathbf{P}}$ est connexe par arcs. Les faces (ou arêtes)
+	de $\mathbf{P}$ sont les segments contenus dans $\boundary{\mathbf{P}}$ qui sont
+	maximaux pour cette propriete. Les sommets de $\mathbf{P}$ sont les
+	intersections de deux faces distinctes.
+\end{definition}
+
+% subsection:pavages
+\subsection{Pavages}
+
+% def:pavage
+\begin{definition}
+	Un \emph{pavage du plan} a une tuile, $\mathcal{P}(\mathbf{T}, \Phi)$ est un
+	ensemble de tuiles de $\R^2$ obtenu à partir d'une tuile $\mathbf{T}$
+	et d'un sous-ensemble $\Phi \subset \Isom(\R^2)$ tel que
+	\begin{equation*}
+		\R^2 = \bigcup_{\varphi \in \Phi} \varphi(\mathbf{T})
+	\end{equation*}
+	et tel que deux tuiles distinctes ne peuvent s'intersecter que suivant leur
+	bord, donc p.t. $\varphi, \varphi' \in \Phi$ 
+	t.q. $\varphi(\mathbf{T}) \neq \varphi'(\mathbf{T})$
+	\begin{equation*}
+		\varphi(\mathbf{T})^\circ \cap \varphi(\mathbf{T})^\circ = \emptyset,
+	\end{equation*}
+	ou de maniere equivalente,
+	\begin{equation*}
+		\varphi(\mathbf{T}) \cap \varphi'(\mathbf{T}) \subset
+		\boundary{\varphi(\mathbf{T})} \cap \boundary{\varphi'(\mathbf{T})}.
+	\end{equation*}	
+\end{definition}
+
+% prop:tuile-isom
+\begin{proposition}
+	Soit $\mathbf{T}$ une tuile et $\varphi \in \Isom(\R^2)$ une isometrie alors
+	$\varphi(\mathbf{T})$ est une tuile et si $\mathbf{T}$ est polygonale,
+	$\varphi(\mathbf{T})$ l'est aussi.
+\end{proposition}
+
+% prop:pavage-isom
+\begin{proposition}
+	Soit $\mathcal{P}(\mathbf{T}, \Phi)$ un pavage et $\psi \in \Isom(\R^2)$ une
+	isometrie, alors 
+	\begin{equation*}
+		\psi(\mathcal{P}(\mathbf{T}, \Phi)) = \mathcal{P}(\mathbf{T}, \psi \circ \Phi)
+		= \mathcal{P}(\psi(\mathbf{T}), \Ad(\psi)(\Phi))
+	\end{equation*}
+	est aussi un pavage.
+\end{proposition}
+
+% def:groupe-isom-pavage
+\begin{definition}
+	Soit $\mathcal{P} = \mathcal{P}(\mathbf{T}, \Phi)$ un pavage, le \emph{groupe
+	des isometries} de $\mathcal{P}$ est l'ensemble
+	\begin{equation*}
+		\Isom(\R^2)_\mathcal{P} := 
+		\{\psi \in \Isom(\R^2)\ |\ \psi(\mathcal{P}) = \mathcal{P}\}
+	\end{equation*}
+\end{definition}
+
+% def:pavage-de-reseaux
+\subsection{Pavages de Reseaux}
+
+% def:reseau
+\begin{definition}
+	Un reseau $\Gamma$ est un sous-groupe additif de $(\R^2, +)$
+	engendré par deux vecteurs, $\vec{u}, \vec{v} \in \R^2$ linéairement
+	indépendants:
+	\begin{equation*}
+		\Gamma = \Z\vec{v} + \Z\vec{u}
+	\end{equation*}
+\end{definition}
+
+% def:parallelogramme-fondamental
+\begin{definition}
+	Soit $\Gamma = \Z\vec{u} + \Z\vec{v}$ un reseau. Le parallélogramme
+	fondamental porté par $\{\vec{u}, \vec{v}\}$ est l'ensemble
+	\begin{equation*}
+		\mathbf{P}_{\vec{u},\vec{v}} :=
+		\{\alpha\vec{u} + \beta\vec{v}\ |\ \alpha, \beta \in [0, 1]\}
+	\end{equation*}
+	Soit $T(\Gamma) = \{t_\gamma\ |\ \gamma \in \Gamma\}$ le groupe des
+	translations par les vecteurs de $\Gamma$, alors pour tout point
+	$\vec{x}_0 \in \R^2$,
+	$\mathcal{P}(\vec{x}_0 + \mathbf{P}_{\vec{u},\vec{v}}, T(\Gamma))$
+	est un pavage du plan.
+\end{definition}
+
+\begin{remark}
+	$\mathcal{P}(\vec{x}_0 + \mathbf{P}_{\vec{u},\vec{v}}, T(\Gamma))$
+	c'est un pavage dont la donnée du sous-ensemble de $\Isom(\R^2)$ est un sous
+	groupe de $\Isom(\R^2)$.
+\end{remark}
+
+% subsection:groupes-cristallographiques
+\subsection{Les groupes cristallographiques du plan}
+
+% def:pavage-regulier
+\begin{definition}
+	Un pavage $\mathcal{P}$ est dit \emph{regulier} si son groupe d'isometries
+	$\Isom(\R^2)_\mathcal{P}$ contient au moins deux translations $t_\vec{u}$ et
+	$t_\vec{v}$ où $\vec{u}, \vec{v} \in \R^2$ sont linéairement indépendants. En
+	d'autres termes, posons $\Gamma = \Z\vec{u} + \Z\vec{v}$, alors
+	$T(\Gamma)\subset \Isom(\R^2)_\mathcal{P}$.
+\end{definition}
+
+% def:groupe-cristallographique
+\begin{definition}
+	Le groupe des isometries d'un pavage regulier $\mathcal{P}$,
+	$G_\mathcal{P} \subset \Isom(\R^2)$ est dit \emph{cristallographique}.
+\end{definition}
+
+\begin{notation}
+	Soit $G = G_\mathcal{P}$ un groupe cristallographique, on note
+	\begin{equation*}
+		G^+=G\cap\Isom(\R^2)^+
+	\end{equation*}
+	le sous groupe des rotations affines,
+	\begin{equation*}
+		T_G = G^+ \cap T(\R^2)
+	\end{equation*}
+	le sous-groupe des translations et
+	\begin{equation*}
+		\Gamma_G = \{\vec{v} \in \R^2\ |\ t_\vec{v} \in T_G\} \subset \R^2
+	\end{equation*}
+	le sous-groupe additif des vecteurs correspondant à $T_G$.
+	On pourra traiter $\Gamma_G$ comme un sous-groupe du groupe $(\C, +)$.
+
+\end{notation}
+
+% prop:sous-groupes-distingues
+\begin{proposition}
+	Les sous groupes $T_G$ et $G^+$ sont distingués dans $G$.
+\end{proposition}
+
+\begin{proof}
+	$T_G = \ker(\lin_{|G})$, où $\lin_{|G}$ est l'application
+	\begin{align*}
+		\lin: \Isom(\R^2) &\to \Isom(\R^2)_0\\
+		\varphi &\mapsto \varphi_0
+	\end{align*}
+	restreinte à $G$ et donc on a bien $T_G \triangleleft G$.  
+	
+	De même, $G^+ = \ker((\det \circ \lin)_{|G})$, où $(\det \circ \lin)_{|G}$
+	est l'application
+	\begin{align*}
+		\det \circ \lin: \Isom(\R^2) &\to \R\\
+		\phi &\mapsto \det(M_{\phi_0})
+	\end{align*}
+	restreinte à $G$ et donc on a bien $G^+ \triangleleft G$.
+\end{proof}
+
+\subsubsection{Le sous-groupe des translations}
+
+% lem:tuiles-boule
+\begin{lemma}
+	\label{lem:tuiles-boule}
+	Pour toute boule ouverte B = $B(\vec{x}, r)$, le nombre de tuiles
+	du pavage $\mathcal{P} = \mathcal{P}(\mathbf{T}, \Psi)$ qui intersectent B est fini.
+\end{lemma}
+\begin{proof}
+	Soit $\vec{x}_0 \in \R^2$ et $r_0 > 0$ tel que
+	$B(\vec{x}_0, r_0) \subset \mathbf{T}$, et
+	soit $R_0 > 0$ tel que $B(\vec{0}, R_0) \supset \mathbf{T}$.
+	Soit $\mathbf{T}' \in \mathcal{P}$ une tuile du pavage qui intersecte $B$,
+	alors $\mathbf{T}' \subset B(\vec{x}, r + 2R_0)$.
+	Notons $N$ le nombre de tuiles de $\mathcal{P}$ qui intersectent $B$.
+	Alors puisque les tuiles sont d'aire non-nul, on a que
+	l'aire de la reunion de toutes les tuiles qui intersectent $B$
+	est plus grande ou égale à
+	\begin{equation*}
+		Aire(B(\vec{x_0}, r_0)) \times N = \pi r_0^2 \times N.
+	\end{equation*}
+	Cette aire est majorée par l'aire du disque $D(\vec{x}, r + 2R_0)$,
+	on a donc
+	\begin{equation*}
+		\pi r_0^2 \times N \leq \pi(r + 2R_0)^2
+	\end{equation*}
+	et ainsi $N < +\infty$
+\end{proof}
+
+% lem:translations-boule
+\begin{lemma}
+	\label{lem:translations-boule}
+	Soit $\mathcal{P} = \mathcal{P}(\mathbf{T}, \Psi)$ un pavage régulier.
+	Pour toute boule ouverte $B = B(\vec{x}, r)$, l'ensemble
+	$\Gamma_G \cap B$ est fini.
+\end{lemma}
+\begin{proof}
+	Considérons la réunion
+	\begin{equation*}
+		\bigcup_{\vec{v} \in \Gamma_G \cap B} (\vec{v} + \mathbf{T}).
+	\end{equation*}
+	Comme $\mathbf{T}$ est une tuile, pour tout $\vec{v} \in \Gamma_G \cap B$,
+	$\vec{v} + \mathbf{T}$ est aussi une tuile.
+	Mais comme dans le Lemme \ref{lem:tuiles-boule}, cette réunion est
+	contenue dans la boule ${B(\vec{x}, r + 2R_0)}$, et donc le nombre de
+	ces tuiles est fini et donc $\Gamma_G$ est fini.
+\end{proof}
+
+% lem:reseau-domaine-fondamental
+\begin{lemma}
+	\label{lem:reseau-domaine-fondamental}
+	Soit $\Gamma = \Z\vec{u} + \Z\vec{v}$ un réseau, alors l'ensemble
+	\begin{equation*}
+		\mathcal{D}_\Gamma :=
+		\{\alpha\vec{u} + \beta\vec{v}\ |\ \alpha, \beta \in [-1/2, 1/2[\}
+	\end{equation*}
+	est un domaine fondamental pour l'action de $\Gamma$ sur $\R^2$ par
+	translation.
+\end{lemma}
+
+\begin{proof}
+	Soit $\vec{x} \in \R^2$, alors $\vec{x}$ se décompose en une combinaison
+	linéaire des vecteurs $\vec{u}$, et $\vec{v}$ (car ils forment une base).
+	Donc il existe $\lambda_1, \lambda_2 \in \R$ tels que
+	\begin{equation*}
+		\vec{x} = \lambda_1 \vec{u} + \lambda_2 \vec{v}.
+	\end{equation*}
+	On pose $n_i = \lfloor \lambda_i + 1/2 \rfloor$ pour $i \in \{1, 2\}$, alors 
+	\begin{equation*}
+		\lambda_i - n_i = \lambda_i - \lfloor \lambda_i + 1/2 \rfloor
+	\end{equation*}
+	Mais puisque $x - 1 < \lfloor x \rfloor \leq x$ pour tout $x \in \R$, on
+	obtient
+	\begin{equation*}
+		-1/2 \leq \lambda_i - n_i < 1/2	
+	\end{equation*}
+	Ainsi $\vec{x}_0 = (\lambda_1 - n_1)\vec{u} + (\lambda_2 - n_2)\vec{v}$
+	$\in \mathcal{D}_g$ et $\vec{x} \in \Gamma + \vec{x}_0$.
+
+	Soit $\vec{x}_0' \in \mathcal{D}_G$ tel que $\vec{x} \in \Gamma + \vec{x}_0'$,
+	et soient $m_1, m_2 \in \Z$ tels que
+	\begin{equation*}
+		\vec{x} = \vec{x}_0' + m_1\vec{u} + m_2\vec{v}
+	\end{equation*}
+	Alors on a
+	\begin{equation*}
+		\vec{x}_0' + m_1\vec{u} + m_2\vec{v} = \vec{x}_0 + n_1\vec{u} + n_2\vec{v}
+	\end{equation*}
+	Soient $\alpha, \alpha', \beta, \beta' \in [-1/2, 1/2[$ tels que
+	$\vec{x_0} = \alpha\vec{u} + \beta\vec{v}$ et
+	$\vec{x}_0' = \alpha'\vec{u} + \beta'\vec{v}$, alors on obtient
+	\begin{equation*}
+		(\alpha' - \alpha + m_1 - n_1)\vec{u} + (\beta'-\beta + m_2 - n1)\vec{v} = 0
+	\end{equation*}
+	Puisque $\vec{u}$ et $\vec{v}$ sont libres, les coefficients doivent être
+	égaux à 0. mais puisque $\alpha' - \alpha \in ]-1, 1[$ et $m_1 - n_1 \in \Z$,
+	ceci implique que $\alpha' - \alpha = 0$. De même $\beta' - \beta = 0$.
+	Donc $\vec{x}_0' = \vec{x}_0$, et ainsi pour tout $\vec{x} \in \R^2$,
+	il existe un unique $\vec{x}_0 \in \mathcal{D}_\Gamma$ t.q.
+	$\vec{x} \in \Gamma + \vec{x_0}$.
+\end{proof}
+
+% thm:translations-reseau
+\begin{theorem}
+	Soit $\mathcal{P} = \mathcal{P}(\mathbf{P}, \Psi)$ un pavage régulier, et
+	$G$ son groupe d'isometries, alors $\Gamma_G$ est un reseau.
+\end{theorem}
+
+\begin{proof}
+	Comme le pavage est régulier, il existe $\vec{a}, \vec{b} \in \Gamma_G$ qui
+	sont linéairement indépendants. Soit une boule ouverte $B = B(\vec{0}, r)$
+	contenant $\vec{a}, \vec{b}$ alors par le Lemme \ref{lem:translations-boule},
+	$B \cap \Gamma_G$ est fini.
+	Il existe donc $\vec{u} \in \Gamma_G$ non-nul et de longueur minimale parmi
+	les elements de $\Gamma_G$ et un element
+	$\vec{v} \in \Gamma_G \setminus \R\vec{u}$ de longueur minimal parmi
+	les elements de $\Gamma_G \setminus \R\vec{u}$.
+
+	On pose $\Gamma = \Z\vec{u} + \Z\vec{v}$, alors clairment
+	$\Gamma \subset \Gamma_G$. On va montrer que $\Gamma = \Gamma_G$.
+	Posons
+	\begin{equation*}
+		\mathcal{D}_\Gamma = \{\alpha\vec{u} + \beta\vec{v}\ |\ 
+		\alpha, \beta \in [-1/2, 1/2[\}.
+	\end{equation*}
+	Par le Lemme \ref{lem:reseau-domaine-fondamental}, c'est un domaine fondamental
+	de $\Gamma$.
+
+	Raisonnons par l'absurde et supposons qu'il existe $\vec{x} \in \Gamma_G$
+	tel que $\vec{x} \notin \Gamma$. Puisque $\vec{u}$ et $\vec{v}$ sont
+	linéairement indépendants, ils forment une base de $\R^2$ et donc, il existe 
+	$\lambda_1, \lambda_2 \in \R$ tels que
+	$\vec{x} = \lambda_1 \vec{u} + \lambda_2 \vec{v}$. Ainsi il existe
+	${n_1, n_2 \in \Z}, {\mu_1, \mu_2 \in [-1/2, 1/2[}$ tels que
+	\begin{equation*}
+		\vec{x} = (\mu_1 + n_1)\vec{u} + (\mu_2 + n_2)\vec{v}
+	\end{equation*}
+	Puisque $\Gamma_G$ est un groupe additif,
+	$\vec{y} = \mu_1\vec{u} + \mu_2\vec{v} \in \Gamma_G$, mais on a que
+	\begin{equation*}
+		\|\vec{y}\| \leq |\mu_1|\|\vec{u}\| + |\mu_2|\|\vec{v}\|
+		\leq \frac{1}{2}\|\vec{u}\| + \frac{1}{2}\|\vec{v}\| \leq \|\vec{v}\|
+	\end{equation*}
+	On a alors 2 cas:
+	\begin{enumerate}
+		\item	$\|\vec{y}\| < \|\vec{v}\|$, mais par définition de $\vec{v}$, ceci
+			implique que $\vec{y} \in \R\vec{u}$, et donc $\mu_2 = 0$, mais donc
+			$\|\vec{y}\| \leq \frac{1}{2}\|\vec{u}\| < \|\vec{u}\|$, mais puisque
+			$\vec{y} \notin \Gamma, \vec{y} \neq \vec{0}$, ce qui
+			est en contradiction avec la minimalité de $\vec{u}$.
+		\item $\|\vec{y}\| = \|\vec{v}\|$, mais puisque $\vec{u}$ et $\vec{v}$
+			ne sont pas colinéaires, ceci implique que soit $|\mu_1|\|\vec{u}\| = 0$,
+			soit $|\mu_2|\|\vec{v}\| = 0$. Si $|\mu_1|\|\vec{u}\| = 0$,
+			alors $\vec{y} \notin \R\vec{u}$, car $\vec{y} \neq 0$, et donc
+			$\|\vec{y}\| = \frac{1}{2}\|\vec{v}\|$ ce qui contredit la minimalité
+			de $\vec{v}$. Sinon $|\mu_2|\|\vec{v}\| = 0$ et donc
+			$\|\vec{y}\| = \frac{1}{2}\|\vec{u}\|$ ce qui contredit la minimalité
+			de $\vec{u}$.
+	\end{enumerate}
+	Ainsi $\Gamma_G \subset \Gamma$ et donc $\Gamma_G = \Gamma$.
+\end{proof}
+
+
+% sssection:groupe-rotations-lineaires
+\subsubsection{Le groupe des rotations linéaires}
+
+\begin{notation}
+	Soit $G$ le groupe d'isometrie d'un pavage regulier $\mathcal{P}$. On notera
+	$G_0 = \lin(G)$ et $G_0^+ = \lin(G^+)$ les images de $G$ et $G^+$
+	respectivement par le morphisme de groupes
+	$\lin: \Isom(\R^2) \to \Isom(\R^2)_0$.
+	Dans cette partie on identifiera $G_0^+$ avec un sous-groupe de $\C^1$
+\end{notation}
+
+\begin{theorem}
+	Soit $\mathcal{P}$ un pavage et $G$ son groupe d'isometries,
+	alors 
+	\begin{equation*}
+		G_0^+ \in \{\mu_1, \mu_2, \mu_3, \mu_4, \mu_6\}
+	\end{equation*}
+	où $\mu_n = \{z \in \C^1\ |\ z^n = 1\}$ est l'ensemble des racines n-ièmes de
+	l'unité. De plus, il existe $\gamma_0 \in \C^*$ tel que
+\end{theorem}
+
+% thm:fedorov
+\begin{theorem}[Theorème de Fedorov]
+	Il existe 17 classes d'isomorphismes possiles pour un groupe
+	cristallographique.
+\end{theorem}
 
 

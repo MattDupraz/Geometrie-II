@@ -29,6 +29,9 @@
 % Notations
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
 
 \DeclareMathOperator{\Bij}{Bij}
 \DeclareMathOperator{\End}{End}
@@ -40,10 +43,18 @@
 \DeclareMathOperator{\red}{red}
 \DeclareMathOperator{\I}{I}
 \DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Isom}{Isom}
+\DeclareMathOperator{\lin}{lin}
 
 \newcommand{\actionl}{\curvearrowright}
 \newcommand{\actionr}{\curvearrowleft}
-\newcommand{\field}[1]{\bathbb{#1}}
+\newcommand{\field}[1]{\mathbb{#1}}
+
+\newcommand{\boundary}[1]{\partial #1}
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\interior}[1]{\overset{\circ}{#1}}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
 
 \begin{document}
 
@@ -52,7 +63,10 @@
 \author{Matthew Dupraz}
 
 \maketitle
+\thispagestyle{empty}
 \newpage
+
+\pagenumbering{roman}
 
 \section*{Préface}
 Ceci est un résumé basé sur le cours et polycopié de Géometrie II de
@@ -68,6 +82,8 @@ appréciée.
 
 \tableofcontents
 \newpage
+
+\pagenumbering{arabic}
 
 \include{01-actions_de_groupes}
 \include{02-pavages_du_plan}
