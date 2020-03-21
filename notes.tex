@@ -1,0 +1,596 @@
+\documentclass[french]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\newcommand{\corps}[1]{\bathbb{#1}}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorème}[section]
+\newtheorem{cor}{Corollaire}[thm]
+\newtheorem{lem}[thm]{Lemme}
+\newtheorem{prop}[thm]{Proposition}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	allcolors=black
+}
+
+\theoremstyle{remark}
+\newtheorem*{rmq}{Remarque}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Définition}[section]
+\newtheorem*{notn}{Notation}
+
+% Notations
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\Bij}{\mathrm{Bij}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Hom}{\mathrm{Hom}}
+
+\newcommand{\Ad}{\mathrm{Ad}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\red}{\mathrm{red}}
+\newcommand{\I}{\mathrm{I}}
+
+\newcommand{\im}{\mathrm{im}}
+
+\newcommand{\agitg}{\curvearrowright}
+\newcommand{\agitd}{\curvearrowleft}
+
+\begin{document}
+
+\title{Géometrie II \\
+	\large Resumé basé sur le polycopié de Prof. Philippe Michel}
+\author{Matthew Dupraz}
+
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Action d'un groupe sur un ensemble}
+\subsection{Action à gauche, à droite}
+
+% Action à gauche
+\begin{defn}
+	Une \emph{action à gauche} d'un groupe $G$ sur un ensemble $E$
+	est une application
+	\begin{align*}
+		G \times E &\to E \\
+		(g, x) &\mapsto g \cdot x,
+	\end{align*}
+	vérifiant les propriétés suivantes:
+	\begin{align*}
+		& \forall x \in E: e_G \cdot x = x, \\
+		& \forall g, g' \in G, \forall x \in E:
+			g' \cdot (g \cdot x) = (g' g) \cdot x.
+	\end{align*}
+\end{defn}
+
+% Action à droite
+\begin{defn}
+	Une \emph{action à droite} d'un groupe $G$ sur un ensemble $E$
+	est une application
+	\begin{align*}
+		G \times E &\to E \\
+		(g, x) &\mapsto x \cdot g,
+	\end{align*}
+	vérifiant les propriétés suivantes:
+	\begin{align*}
+		& \forall x \in E: x \cdot e_G = x, \\
+		& \forall g, g' \in G, \forall x \in E:
+			(x \cdot g) \cdot g' = x \cdot (g g').
+	\end{align*}
+\end{defn}
+
+% Morphisme associé
+\begin{defn}
+	Le morphisme de groupes $\phi : G \to \Bij(E)$ \emph{associé}
+	à l'action d'un groupe $G$ sur un ensemble $E$
+	est un morphisme tel que $g \cdot x = (\phi(g))(x)$
+	(resp. $x \cdot g = (\phi(g))(x)$ pour les actions à droite)
+	pour tout $g \in G, x \in E$.
+\end{defn}
+
+% Notation "agit"
+\begin{notn}
+	On note $G \agitg E$ le fait qu'un groupe agisse sur un ensemble $E$.
+	Pour spécifier qu'il s'agit d'une action à droite on note $E \agitd G$.
+\end{notn}
+
+% G-ensembles
+\begin{notn}
+	Soit $G$ un groupe et $E$ un ensemble, tel que $G \agitg E$.
+	On appele alors $E$ un \emph{$G$-ensemble}
+\end{notn}
+
+% Noyau
+\begin{defn}
+	Soit $G$ un groupe agissant sur un ensemble $E$,
+	alors le \emph{noyau} de l'action est le noyau $\ker(\phi)$ du morphisme
+	$\phi : G \to \Bij(E)$ associé. De même, l'\emph{image}
+	de l'action est l'image $\im(\phi)$ du morphisme associé.
+\end{defn}
+
+% Morphisme de G-ensembles
+\begin{defn}
+	Soit $G$ un groupe. Un \emph{morphisme de $G$-ensembles} est une
+	application $\psi : X \to Y$ qui est compatible avec
+	la structure des $G$-ensembles $X$ et $Y$ --- elle satisfait
+	\begin{equation*}
+		\forall g \in G, \forall x \in X:
+			\psi(g \cdot x) = g \times \psi(x).
+	\end{equation*}
+	On appelle $\psi$ aussi un \emph{$G$-morphisme},
+	ou une \emph{application d'entrelacement}.
+\end{defn}
+
+\subsection{Orbites, stabilisateurs et points fixes}
+
+% Orbite
+\begin{defn}
+	L'\emph{orbite} d'un élément $x \in E$ sous l'action de $G$
+	(ou encore une \emph{$G$-orbite}) est l'ensemble
+	\begin{equation*}
+		G \cdot x := \{g \cdot x\ |\ g \in G\}.
+	\end{equation*}
+\end{defn}
+
+\begin{notn}
+	On note $x \cdot G$ l'orbite de $x$ si $E \agitd G$.
+\end{notn}
+
+\begin{defn}
+	Soit $G$ un groupe et $E$ un $G$-ensemble. 
+	On note
+	\begin{equation*}
+		E / G := \{ G \cdot x\ |\ x \in E\}, 	
+	\end{equation*}
+	l'ensemble des $G$-orbites de $E$. On appelle cet
+	ensemble le \emph{quotient de $E$ sous l'action de $G$}.
+\end{defn}
+
+\begin{notn}
+	On peut noter $G \backslash E$ pour spécifier qu'il s'agit d'une action à gauche.
+\end{notn}
+
+% Points fixes
+\begin{defn}
+	L'ensemble des \emph{points fixes} d'un element $g \in G$ est l'ensemble
+	\begin{equation*}
+		E^g := \{x \in E\ |\ g \cdot x = x\}.
+	\end{equation*}
+\end{defn}
+
+% Stabilisateur
+\begin{defn}
+	Le \emph{stabilisateur} d'un élément $x \in E$ sous l'action de $G$ est l'ensemble
+	\begin{equation*}
+		G_x := \{g \in G\ |\ g \cdot x = x\}.
+	\end{equation*}
+\end{defn}
+
+\begin{rmq}
+	Le stabilisateur d'un element $x \in E$ sous l'action de $G$ est un sous-groupe de $G$.	
+\end{rmq}
+
+% Orbites - relation d'équivalence
+\begin{thm}
+	Soit $E$ un ensemble et $G$ un groupe agissant sur $E$. La relation définie par
+	\begin{equation*}
+		x \sim y \iff x \in G \cdot y,
+	\end{equation*}
+	pour $x, y \in E$, est une relation d'équivalence.
+\end{thm}
+
+\begin{proof}
+	Cette relation est:
+	\begin{itemize}
+		\item Réflexive, car pour $x \in E$, on a $x = e_G \cdot x$ et donc $x \sim x$.
+		\item Symétrique, car pour $x, y \in E$, si $x \sim y$,
+			alors il existe $g \in G$ tel que $x = g \cdot y$, et donc $y = g^{-1} \cdot x$,
+			d'où $y \in G \cdot x$ et $y \sim x$.
+		\item Transitive, car pour $x, y, z \in E$ si $x \sim y$ et $y \sim z$,
+			alors il existe $g,g' \in G$ tel que $x = g \cdot y$ et
+			$y = g' \cdot z$ et donc $x = (g g') \cdot z$ et $x \sim z$.
+	\end{itemize}
+\end{proof}
+
+\begin{rmq}
+	Les classes d'equivalence de $\sim$ sont les orbites $G \cdot x$, $x \in E$.
+\end{rmq}
+
+\begin{cor}
+	Le quotient d'un $G$-ensemble $E$ sous l'action de $G$ (l'ensemble de $G$-orbites de $E$)
+	forme une partition de $E$.
+\end{cor}
+
+\begin{cor}[Formule des classes]
+	Si $E$ est un enseble fini, alors
+	\begin{equation*}
+		|E| = \sum_{A \in E/G}|A|
+	\end{equation*}
+\end{cor}
+
+\begin{defn}
+	On note $\pi_G$ ou $\red_G$ l'application surjective
+	\begin{align*}
+		red_G : E &\to E/G \\
+		x &\mapsto G \cdot x
+	\end{align*}
+	On appelle cette application \emph{projection sur $E/G$} ou encore
+	\emph{reduction modulo $G$}.
+\end{defn}
+
+\begin{defn}
+	Soit $G$ un groupe et $E$ un $G$-ensemble.
+	Un \emph{domaine fondamental} est un sous-ensemble
+	$\mathcal{D}_G \subset E$ tel que
+	\begin{equation*}
+		E = \bigsqcup_{x \in \mathcal{D}_G} G \cdot x
+			= \bigsqcup_{g \in G} g \cdot \mathcal{D}_G
+	\end{equation*}
+\end{defn}
+
+\begin{rmq}
+	Un domaine fondamental n'est pas uniquement défini.
+\end{rmq}
+
+% theoreme-lagrange
+
+\begin{thm}[Theorème de Lagrange]
+	Soit $G$ un groupe et $H$ un sous-groupe de $G$
+	qui agit sur $G$ par translation. Alors si $H$ est fini,
+	\begin{equation*}
+		\forall A \in G/H: |A| = |H|
+	\end{equation*}
+	Si de plus $G$ est fini, alors l'ordre de $H$ divise l'ordre de $G$,
+	et 
+	\begin{equation*}
+		|G/H| = \frac{|G|}{|H|}
+	\end{equation*}
+\end{thm}
+
+\begin{notn}
+	Le cardinal $|G/H|$ s'appelle \emph{l'indice de H dans G} et se note
+	$[G : H]$
+\end{notn}
+
+\begin{proof}
+	Supposons $H$ fini, comme l'application de translation à droite par $g$ est injective,
+	et que l'image de $H$ par cette application est $H\,g$,
+	on a $|H\,g| = |H|$, et donc toutes les orbites sont de la même taille.\\
+	Supposons que $G$ soit fini, par la formule des classes on a alors
+	\begin{equation*}
+		|G| = \sum_{A \in G/H}|A| = \sum_{A \in G/H}|H| = |G/H||H|
+	\end{equation*}
+	d'où il s'ensuit que
+	\begin{equation*}
+		[G:H] = |G/H| = \frac{|G|}{|H|}
+	\end{equation*}
+\end{proof}
+
+% theoreme-orbite-stabilisateur
+
+\begin{thm}[Theorème orbite-stabilisateur]
+	Soit $G$ un groupe et $E$ un $G$-ensemble.
+	Soit $x \in E$ et $G \cdot x$ son orbite.
+	L'application
+	\begin{align*}
+		\psi : G/G_x &\xrightarrow{\sim} G \cdot x\\
+		g\,G_x &\mapsto g \cdot x
+	\end{align*}
+	est un isomorphisme de $G$-ensembles.
+	
+\end{thm}
+
+\begin{proof}
+	L'application est bien définie, supposons qu'il existe $g, g' \in G$,
+	tel que $g G_x = g' G_x$, alors il existe $h \in G_x$,
+	tel que $g = g' h$. Il s'ensuit que
+	\begin{equation*}
+		\psi(g\,G_x) = g \cdot x = (g' h) \cdot x
+		= g' \cdot (h \cdot x) = g' \cdot x = \psi(g'\,G_x)
+	\end{equation*}
+	Montrons que $\psi$ est bien bijective:
+	\begin{itemize}
+		\item Surjectivité: Soit $y \in A$, alors il existe $g \in G$ tel que $y = g \cdot x$,
+			et puisque $g \cdot x = \psi(g\,G_x)$, on a bien que $y = \psi(g\,G_x)$
+		\item Injectivité: Soient $g, g' \in G$ tels que
+			$g \cdot x = g' \cdot x$. Alors on a que $x = (g^{-1} g') \cdot x$ et donc
+			$g^{-1} g' \in G_x$ puis $g' \in g\,G_x$.
+			En d'autres termes $g'\,G_x = g\,G_x$
+	\end{itemize}
+	Finalement montrons que $\psi$ est un isomorphisme de $G$-ensembles.
+	Soient $g, g'\in G$, alors
+	\begin{equation*}
+		\psi(g'(g\,G_x)) = \psi((g' g) G_x)
+			= (g' g) \cdot x = g' \cdot (g \cdot x) = g' \cdot \psi(g\,G_x)
+	\end{equation*}
+\end{proof}
+
+\begin{cor}
+	\label{formule-orbite-stabilisateur}
+	Soit $G$ un groupe, $E$ un $G$-ensemble et $x \in E$. Alors si $E$ et $G$ sont finis, on a
+	\begin{equation*}
+		|G \cdot x| = |G/G_x| = \frac{|G|}{|G_x|}
+	\end{equation*}
+\end{cor}
+
+\begin{proof}
+	Par le theorème orbite-stabilisateur, $|G \cdot x|$ et $|G/G_x|$
+	sont des $G$-ensembles isomorphes. Puisqu'ils sont finis,
+	il s'ensuit que $|G \cdot x| = |G/G_x|$.
+	Par le theorème de Lagrange, $|G/G_x| = |G|/|G_x|$.
+\end{proof}
+
+\begin{prop}
+	\label{stab-conjugue}
+	Soit $G$ un groupe et $E$ un $G$-ensemble, soit $x \in E$ et
+	$G \cdot x$ l'orbite de $x$, alors pour tout $y \in G \cdot x$,
+	$G_x$ est conjugué (donc isomorphe) à $G_y$.
+\end{prop}
+
+\begin{proof}
+	Soit $y \in G \cdot x$, alors il existe $g \in G$ tel que $y = g \cdot x$.
+	Soit $h \in G_y$, alors on a
+	\begin{equation*}
+		h \cdot y = y \iff h \cdot (g \cdot x) = g \cdot x \iff
+		g^{-1} h g = x \iff g^{-1} h g \in G_x,
+	\end{equation*}
+	et ainsi $h \in \Ad(g)(G_x)$ et donc $G_y \subset \Ad(g)(G_x)$.
+	Puisque $x \in G \cdot y$ et $x = g^{-1} \cdot y$ on a 
+	aussi que $G_x \subset \Ad(g^{-1})(G_y)$ et donc $G_y = \Ad(g)(G_x)$
+\end{proof}
+
+% formule-burnside
+
+\begin{thm}[Formule de Burnside]
+	Soit $G$ un groupe fini et $E$ un $G$-ensemble fini. Alors
+	\begin{equation*}
+		|E/G| = \frac{1}{|G|}\sum_{g \in G}|E^g|.
+	\end{equation*}
+\end{thm}
+
+\begin{proof}
+	Posons $S = \{(g, x) \in G \times E\ |\ g \cdot x = x\}$, alors
+	\begin{equation*}
+		\sum_{g \in G} |E^g| = |S| = 
+		\sum_{x \in X} |G_x| = \sum_{A \in E/G} \sum_{x \in A} |G_x|.
+	\end{equation*}
+	Soit $A \in E/G$, soit $x \in A$, alors par le Corollaire
+	\ref{formule-orbite-stabilisateur}, $|G_x| = \frac{|G|}{|A|}$ et donc
+	\begin{equation*}
+		\sum_{A \in E/G} \sum_{x \in A} |G_x| = \sum_{A \in E/G} \sum_{x \in A}\frac{|G|}{|A|}
+		\sum_{A \in E/G} |A|\frac{|G|}{|A|} = |E/G||G|.
+	\end{equation*}
+	D'où on obtient que
+	\begin{equation*}
+		|E/G| = \frac{1}{|G|}\sum_{g \in G}|E^g|.
+	\end{equation*}
+\end{proof}
+
+\subsection{Caractéristiques des actions de groupe}
+
+% Action fidele
+\begin{defn}
+	Une action $G \agitg E$ est dite \emph{fidèle} si pour $g \in G$,
+	\begin{equation*}
+		\phi(g) = \id_E \iff g = e_G,
+	\end{equation*}
+	où $\phi : G \to \Bij(E)$ est le morphisme associé à l'action.
+\end{defn}
+
+% Action libre
+\begin{defn}
+	Une action $G \agitg E$ est dite \emph{libre} si
+	\begin{equation*}
+		\forall x \in E, G_x = \{e_G\}.
+	\end{equation*}
+\end{defn}
+
+\begin{rmq}
+	Une action libre est fidèle.	
+\end{rmq}
+
+% Action transitive
+\begin{defn}
+	Une action $G \agitg E$ est dite \emph{transitive} si elle
+	possède une et une seulle orbite, c'est à dire $G \cdot x = E$ pour tout $x \in E$.
+\end{defn}
+
+% Action n-transitive
+\begin{defn}
+	Une action $G \agitg E$ est dite \emph{n-transitive} si l'action induite sur
+	l'ensemble des $n$-uplets d'elements disticts de $E$ est transitive.
+\end{defn}
+
+\subsection{Groupe quotient}
+
+Soit $(G, \cdot)$ un groupe, on munit l'ensemble $\mathcal{P}(G)$
+de la loi de composition interne suivante
+\begin{align*}
+	\mathcal{P}(G) \times \mathcal{P}(G) &\to \mathcal{P}(G)\\
+	(A, B) &\mapsto A \cdot B := \{a \cdot b\ |\ a \in A, b \in B\}.
+\end{align*}
+Soit $A \in \mathcal{P}(G)$, on définit
+\begin{equation*}
+	A^{-1} := \{a^{-1}\ |\ a \in A\}.
+\end{equation*}
+
+\begin{lem}
+	\label{hh-h}
+	Soit $G$ un groupe et $H \subset G$ un sous-groupe, alors
+	\begin{equation*}
+		H^{-1} = H \textrm{ et } H \cdot H = H.
+	\end{equation*}
+\end{lem}
+\begin{proof}
+	La première égalité est evidente, car un groupe est invariant par inversion. Pour la seconde égalité on a que pour tout $h, h' \in H$, $h \cdot h' \in H$, et donc $H \cdot H \subset H$, aussi $H = {e_G} \cdot H \subset H \cdot H$
+\end{proof}
+
+% existence-groupe-quotient
+
+\begin{thm}[Existence du groupe quotient]
+	\label{existence-quotient}
+	Soit $G$ un groupe et $H \triangleleft G$ un sous-groupe distingué.
+	Alors le quotient $G/H$ muni de la loi de composition des ensembles
+	\begin{align*}
+		\mathcal{P}(G) \times \mathcal{P}(G) &\to \mathcal{P}(G)\\
+		(A, B) &\mapsto A \cdot B := \{a \cdot b\ |\ a \in A, b \in B\}.
+	\end{align*}
+	a une structure de groupe. Le groupe $G/H$ ainsi obtenu s'appelle le groupe quotient de G par H.
+\end{thm}
+
+\begin{proof}
+	Nous allons vérifies les quatrues conditions qui font de $(G/H, \cdot)$ un groupe
+	\begin{enumerate}
+		\item Soient $A, B, C \in G/H$, alors
+			\begin{align*}
+				A \cdot (B \cdot C) &= A \cdot \{b \cdot c\ |\ b \in B, c \in C\}
+					= \{a \cdot (b \cdot c)\ |\ a \in A, b \in B, c \in C\}\\
+				&= \{(a \cdot b) \cdot c\ |\ a \in A, b \in B, c \in C\}
+					= \{a \cdot b\ |\ a \in A, b \in B\} \cdot C\\
+				&= (A \cdot B) \cdot C.
+			\end{align*}
+			Ainsi on a bien que la loi de composition est associative.
+		\item Soient $A, B \in G/H$, alors il existe $g, g' \in G$ tel que $A = g \cdot H$ et
+			$B = g' \cdot H$ et on a que	
+			\begin{equation*}
+				(g \cdot H) \cdot (g' \cdot H)
+				= g \cdot (g' \cdot g'^{-1}) \cdot H \cdot g' \cdot H
+				= g \cdot g' \cdot \Ad(g'^{-1})(H) \cdot H.
+			\end{equation*}
+			Et en effet, puisqu'on a fait l'hypothèse que $H \triangleleft G$
+			est un sous-groupe distingué,
+			on a que ${Ad(x)(H) = H}$ pour tout $x \in G$.
+			De plus en invoquant le Lemme \ref{hh-h} on a que $H \cdot H = H$, donc
+			\begin{equation*}
+				g \cdot g' \cdot \Ad(g'^{-1})(H) \cdot H = g \cdot g' \cdot H \cdot H
+				= (g \cdot g') \cdot H \in G/H.
+			\end{equation*}
+			Donc pour tout $A, B \in G/H$, on a que $A \cdot B \in G/H$.
+		\item $H$ est l'element neutre de $(G/H, \cdot)$,
+			en effet soit $g \cdot H \in G/H$, alors 
+			\begin{align*}
+				(g \cdot H) \cdot H &= g \cdot H\\
+				H \cdot (g \cdot H) &= g \cdot g^{-1} \cdot H \cdot g \cdot H
+				= g \cdot H \cdot H = g \cdot H.
+			\end{align*}
+		\item Soit $g \cdot H \in G/H$, alors $(g \cdot H)^{-1} = g^{-1} \cdot H \in G/H$,
+			en effet
+			\begin{equation*}
+				g \cdot H \cdot (g \cdot H)^{-1} = g \cdot H \cdot g^{-1} \cdot H
+				= H \cdot H = H.
+			\end{equation*}
+	\end{enumerate}
+	Ainsi on a démontré que $(G/H, \cdot)$ est un groupe.
+\end{proof}
+
+\begin{prop}
+	Soit $G$ un groupe, $H \triangleleft G$ un sous-groupe distingué, alors $\red_H : G \to G/H$ est un morphisme surjectif de groupes et $\ker(\red_H) = H$
+\end{prop}
+
+\begin{proof}	
+	Dans la preuve du Théorème \ref{existence-quotient}, on a montré que pour tous
+	$g, g' \in G$, on a que $(g \cdot H) \cdot (g' \cdot H) = (g \cdot g') \cdot H$.
+	Ainsi pour tous $g, g' \in G$, il en résulte que
+	\begin{equation*}
+		\red_H(g) \cdot \red_H(g') = (g \cdot H) \cdot (g' \cdot H)
+		= (g \cdot g') \cdot H = \red_H(g \cdot g').
+	\end{equation*}
+	L'application $red_H$ est surjective, et puisque $H$ est un groupe, $e_G \in H$,
+	et donc
+	\begin{equation*}
+		g \cdot H = H \iff g \in H.	
+	\end{equation*}
+	Et donc $\ker(\red_H) = H$.
+\end{proof}
+
+% theoreme-noyau-image
+
+\begin{thm}[Theorème noyau-image]
+	\label{noyau-image}
+	Soit $\phi : G \to G'$ un isomorphisme de groupes de noyau $H \triangleleft G$.
+	Alors $\phi$ induit l'isomorphisme de groupes
+	\begin{align*}
+		\phi_H: G/H &\xrightarrow{\sim} \im(\phi)\\
+		g H &\mapsto \phi(g).
+	\end{align*}
+\end{thm}
+
+\begin{proof}
+	$\phi_H$ est bien définie, car si pour $g H, g'H \in G/H$, on a $gH = g'H$,
+	alors il existe $h \in H$ tel que $g' = gh$ et
+	\begin{equation*}
+		\phi_H(g'H) = \phi(gh) = \phi(g)\phi(h) = \phi(g) = \phi_H(gH).
+	\end{equation*}
+	$\phi_H$ est injectif, car pour $gH \in G/H$, on a
+	\begin{equation*}
+		\phi_H(gH) = e_{G'} \iff \phi(g) = e_{G'} \iff g \in H \iff gH = H = e_{G/H}.
+	\end{equation*}
+	$\phi_H$ est surjectif, car pour $y \in \im(\phi)$, il existe $g \in G$ 
+	tel que $\phi(g) = y$, or $\phi_H(gH) = \phi(g) = y$.
+	Enfin, $\phi_H$ est un morphisme de groupes car pour tout $g, g' \in G$,
+	\begin{equation*}
+		\phi_H(gH \cdot g'H) = \phi_H(gg'H) = \phi(g)\phi(g') = \phi_H(gH)\phi_H(g'H)
+	\end{equation*}
+\end{proof}
+
+\begin{cor}
+	Si $G$ est fini (alors $G'$ aussi car $G \cong G'$), $G/H$ est fini et on a $|G/H| = |\im(\phi)|$, car $G/H \cong \im(\phi)$. Par Lagrange, $|G| = |\im(\phi)||H|$.
+\end{cor}
+
+% propriete-universelle-des-groupes-quotient
+
+\begin{thm}[Propriété universelle des groupes quotient]
+	\label{prop-quotient}
+	Soient $G, G'$ deux groupes et $H \triangleleft G$ un sous-groupe distingué.
+	Alors l'application
+	\begin{align*}
+		\Psi : \Hom(G/H, G') &\to \{\phi \in \Hom(G, G')\ |\ \ker(\phi) = H\}\\
+		\phi_H &\mapsto \phi := \phi_H \circ \red_H
+	\end{align*}
+	est une bijection.
+\end{thm}
+
+\begin{proof}
+	Montrons que $\Psi$ est surjective -- soit $\phi \in \Hom(G, G')$ tel que $\ker(\phi) = H$,
+	soit $\phi_H$ le défini dans le Theorème \ref{noyau-image}. Alors pour tout $g \in G$,
+	\begin{equation*}
+		\Psi(\phi_H)(g) = (\phi_H \circ \red_H) (g) = \phi_H(gH) = \phi(g)
+	\end{equation*}
+	Ainsi $\phi \in \im(\Psi)$ et donc $\Psi$ est surjective.  
+
+	Montrons que $\Psi$ est injective -- soient $\phi_H, \phi'_H \in \Hom(G/H, G')$ tels que
+	$\Psi(\phi_H) = \Psi(\phi'_H)$, alors
+	\begin{equation*}
+		(\phi_H \circ \red_H)(g) = (\phi'_H \circ \red_H)(g)	
+		\iff \phi(gH) = \phi'(gH),
+	\end{equation*}
+	pour tout $g \in G$. Ainsi $\phi_H = \phi'_H$ et donc $\Psi$ est injective
+	et par conséquent aussi bijective.
+\end{proof}
+
+%
+% CHAPITRE: pavages-du-plan
+%
+
+\section{Pavages du plan}
+
+\subsection{Tuiles}
+
+\end{document}
