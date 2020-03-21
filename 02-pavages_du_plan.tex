@@ -284,6 +284,7 @@ compact (fermé, borné) et d'intérieur $\interior{\mathbf{T}}$ non vide.
 
 % thm:translations-reseau
 \begin{theorem}
+	\label{thm:translations-reseau}
 	Soit $\mathcal{P} = \mathcal{P}(\mathbf{P}, \Psi)$ un pavage régulier, et
 	$G$ son groupe d'isometries, alors $\Gamma_G$ est un reseau.
 \end{theorem}
@@ -351,18 +352,109 @@ compact (fermé, borné) et d'intérieur $\interior{\mathbf{T}}$ non vide.
 	$G_0 = \lin(G)$ et $G_0^+ = \lin(G^+)$ les images de $G$ et $G^+$
 	respectivement par le morphisme de groupes
 	$\lin: \Isom(\R^2) \to \Isom(\R^2)_0$.
-	Dans cette partie on identifiera $G_0^+$ avec un sous-groupe de $\C^1$
+	Dans cette partie on identifiera $G_0^+$ avec un sous-groupe de $\C^1$.
+	Finalement, on notera $\Gamma$ pour $\Gamma_G$
 \end{notation}
 
+% lem:invariance-rotation
+\begin{lemma}
+	\label{lem:invariance-rotation}
+	Soit $\mathcal{P}$ un pavage régulier et $G$ son groupe d'isometries, pour
+	tout $r \in G^+$ d'angle $\alpha \in \C^1$, $\alpha\Gamma = \Gamma$.
+\end{lemma}
+
+\begin{proof}
+	Si $G^+ = T_\Gamma$, alors $\alpha = 1$ et c'est clair,
+	sinon $G^+ \neq T_\Gamma$, et donc $G_0^+ \neq {1}$.
+	Soit $r_{\alpha, \nu} \in G^+$, soit $t_\gamma \in T_\Gamma$, alors
+	$\Ad(r)(t_\gamma) = r \circ t_\gamma \circ r^{-1} = t_{\alpha\gamma}$,
+	donc $\alpha\gamma \in \Gamma$ et donc $\alpha\Gamma \subset \Gamma$.
+	En particulier $\alpha^{-1} \in G_0^+$, donc $\alpha^{-1} \subset \Gamma$
+	et ainsi $\alpha \Gamma = \Gamma$.
+\end{proof}
+
+% thm:pavage-rotations
 \begin{theorem}
-	Soit $\mathcal{P}$ un pavage et $G$ son groupe d'isometries,
+	\label{thn:pavage-rotations}
+	Soit $\mathcal{P}$ un pavage régulier et $G$ son groupe d'isometries,
 	alors 
 	\begin{equation*}
 		G_0^+ \in \{\mu_1, \mu_2, \mu_3, \mu_4, \mu_6\}
 	\end{equation*}
 	où $\mu_n = \{z \in \C^1\ |\ z^n = 1\}$ est l'ensemble des racines n-ièmes de
 	l'unité. De plus, il existe $\gamma_0 \in \C^*$ tel que
+	\begin{itemize}
+		\item Si $G_0^+ \in \{\mu_3, \mu_6\}$: $\Gamma = \gamma_0(\Z + \Z\omega_3)$
+			où $\omega_3 = -\frac{1}{2} \pm i \frac{\sqrt{3}}{2}$
+		\item Si $G_0^+ = \mu_ 4$: $\Gamma = \gamma_0(\Z + \Z i)$
+	\end{itemize}
 \end{theorem}
+
+\begin{proof}
+	On a que $\Gamma = \Z\gamma_0 + \Z\gamma_1$ pour $\gamma_0, \gamma_1 \in \C^*$, 
+	comme dans la preuve du Theorème \ref{thm:translations-reseau}
+	avec $|\gamma_1| \geq |\gamma_0|$, et on pose
+	$\Gamma ' = \frac{1}{\gamma_0} \Gamma = \Z + \Z\gamma$, où
+	$\gamma = \frac{\gamma_1}{\gamma_0}$. $\Gamma'$ est un reseau obtenu
+	à partir de $\Gamma$ par la multiplication par
+	$\gamma_0^{-1} = |\gamma_0|^{-1}\frac{|\gamma_0|}{\gamma_0}$,
+	ce qui est une composition de rotation linéaire d'angle
+	$\frac{|\gamma_0|}{\gamma_0} \in \C^1$ et l'homothetie de rapport
+	$|\gamma_0|^{-1}$. Par notre choix de $\gamma_0$ et $\gamma_1$, l'élement de module
+	minimal les elements de $\Gamma' \setminus \{0\}$ c'est 1, et
+	$\gamma$ est un element de module minimal dans $\Gamma \setminus \R$.
+	On a de plus $|\gamma| \geq 1$
+
+	On a alors (en invoquant le Lemme \ref{lem:invariance-rotation})
+	pour tout $\alpha \in G_0^+$
+	\begin{equation*}
+		\alpha\Gamma' = \frac{\alpha}{\gamma_0}\Gamma =
+		\frac{1}{\gamma_0}(\alpha\Gamma) = \frac{1}{\gamma_0}\Gamma = \Gamma'
+	\end{equation*}
+	En particulier, comme $1 \in \Gamma'$, $\alpha \in \Gamma'$ et donc
+	$G_0^+ \in \Gamma'$. Comme $\alpha^{-1} \in G_0^+$ et que
+	$\alpha^{-1} = \overline{\alpha}$, on a que 
+	\begin{equation*}
+		\alpha + \alpha^{-1} = \alpha + \overline{\alpha} =
+		2 \Re(\alpha) \in \R \cap \Gamma' = \Z.
+	\end{equation*}
+	Comme $|2\Re(\alpha)| \leq 2$, on a $2\Re(\alpha) \in \{-2, -1, 0, 1, 2\}$.
+	
+	On a donc les cas suivants:
+	\begin{itemize}
+		\item Si $2\Re(\alpha) = \pm 2$, alors $\alpha = \pm 1$.
+		\item Si $2\Re(\alpha) = \pm 1$, alors $\alpha = \pm\frac{1}{2} \pm
+			i\frac{\sqrt{3}}{2}$, et donc $\alpha$ est bien une
+			racine primitive 3-ème de
+			l'unité $(\alpha = -\frac{1}{2} \pm i\frac{\sqrt{3}}{2})$, ou
+			une racine primitive 6-ème de l'unité
+			$(\alpha = \frac{1}{2} \pm i\frac{\sqrt{3}}{2})$
+		\item Si $2\Re(\alpha) = 0$, alors $\alpha = \pm i$, et donc $\alpha$ est
+			bien une racine primitive 4-ème de l'unité.
+	\end{itemize}
+	En particulier $G_0^+$ est un groupe fini, donc cyclique et
+	si $\omega$ est un générateur, son ordre est 1, 2, 3, 4 ou 6,
+	donc $\omega \in \{1, -1, \omega_3^{\pm 1}, i^{\pm 1}, \omega_6^{\pm 1}\}$
+	et puisque $G_0^+ \subset \Gamma'$, on a que
+	$G_0^+ \in \{\mu_1, \mu_2, \mu_3, \mu_4, \mu_6\}$.
+	On note aussi que si $\mu_3 \in \Gamma'$, alors $\mu_6 \in \Gamma'$,
+	car $\omega_3 \in \Gamma' \implies -\omega_3 \in \Gamma'$, qui est d'ordre 6.
+
+	Supposons que $G_0^+$ soit d'ordre 3, 4 ou 6, alors $\Gamma'$
+	contient suivant les cas où bien $\Z + \Z i$, où bien $\Z + \Z\omega_3$.
+	Montrons que dans ces cas, ces inclusions sont des égalités.
+	On a que $\Gamma = \Z + \Z\gamma$ où $\gamma$ est de module minimal parmi les
+	élements de $\Gamma \setminus \R$. On a donc $|\gamma| \geq 1$, mais comme
+	$|i| = |\omega_3| = 1$, $i$ et $\omega_3$ sont suivant le cas de module
+	minimal parmi les elements de $\Gamma \setminus \R$.
+	On en déduit (suivant le cas)
+	\begin{equation*}
+		\Gamma' = \Z + \Z i \textrm{ ou bien } \Gamma' = \Z + \Z\omega_3
+	\end{equation*}
+
+
+
+\end{proof}
 
 % thm:fedorov
 \begin{theorem}[Theorème de Fedorov]
