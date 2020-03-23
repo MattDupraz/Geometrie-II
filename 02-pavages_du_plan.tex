@@ -456,10 +456,191 @@ compact (fermé, borné) et d'intérieur $\interior{\mathbf{T}}$ non vide.
 
 \end{proof}
 
+% thm:fedorov-rotations
+\begin{theorem}[Theorème de Fedorov pour les groupes de rotations]
+	Il existe 5 classe d'isomorphismes possibles poue le sous-groupe des
+	isometries directes $G^+ \subset G$ d'un groue cristallographique.
+\end{theorem}
+\begin{proof}
+	Soit $r$ une rotation de $G^+$ d'angle $\omega$ d'ordre maximal
+	et de centre $z_r \in \C$.
+	Appliquant au pavage $\mathcal{P} = \mathcal{P}(\mathbf{T}, \Phi)$ la
+	translation $t_{-z_r}$, on obtient le pavage
+	$\mathcal{P}' = \mathcal{P}(\mathbf{T}', \Phi')$, avec
+	$\mathbf{T}' = \mathbf{T} - z_r$ dont le groupe d'isometries est le groupe
+	conjugué
+	\begin{equation*}
+		G' = \Ad(t_{-z_r})(G) \textrm{ et } G'^+ = \Ad(t_{-z_r})(G^+) 
+	\end{equation*}
+	et on a 
+	\begin{equation*}
+		T_{G'} = \Ad(t_{-z_r})(T(\Gamma)) = T(\Gamma)
+	\end{equation*}
+	D'autre part
+	\begin{equation*}
+		r' = \Ad(t_{-z_r})(r) = r_{\omega, 0}
+	\end{equation*}
+	car $z_r$ est le centre de $r$. Ainsi quitte a remplacer le pavage
+	$\mathcal{P}'$ par le pavage $\mathcal{P}$, (de même pour les groupes des
+	isometries) ainsi $r_{\omega, 0} \in G^+$. et
+	$G^+ = \langle r_{\omega, 0} \rangle$.
+
+	Écrivant $\Gamma = \Z\gamma_0 +\Z\gamma_1$, comme dans la preuve
+	\ref{thm:translations-reseau};
+	la transformation linéaire
+	\begin{equation}
+		[\times \frac{1}{\gamma_0}]: z \mapsto \frac{1}{\gamma_0} z
+	\end{equation}
+	est la composée d'une rotation linéaire (d'angle
+	$\frac{|\gamma_0|}{\gamma_0}$) et d'une homothetie linéaire (de rapport 
+	$\frac{1}{|\gamma_0|}$) et transforme le pavage
+	$\mathcal{P}(\mathbf{T}, \Phi)$ en
+	\begin{equation*}
+		\mathcal{P}' = \mathcal{P}(\mathbf{T}', \Phi') =
+		\left(\frac{1}{\gamma_0}\mathbf{T},
+		\Ad\left(\frac{1}{\gamma_0}\right)\Phi\right)
+	\end{equation*}
+	Les sous-groupes associés au groupe d'isometries $G'$ sont les conjugués par
+	$\frac{1}{\gamma_0}$. Ainsi quitte à remplacer $G'$ par $G$ et on peut
+	supposer que $G$ vérifie $G_0^+ \subset G^+$ et $\Gamma=\Z + \gamma\Z$ avec
+	$\gamma$ de module $|\gamma| \geq 1$ et de longueur minimal parmi les
+	elements de $\Gamma \setminus \R$. Comme $G_0^+ \subset G^+$, tout élement
+	$r$ de $G^+$ s'écrit de manière unique sous la forme
+	\begin{equation*}
+		r = t_z \circ r_{\alpha, 0}, z\in\C, \alpha \in G_0^+,
+	\end{equation*}
+	comme $G_0^+ \subset G_0^+$ il en résulte que
+	$t_z = r \circ r_{\alpha, 0}^{-1}$ et donc $z \in \Gamma$.
+	Ainsi $G^+$ est engendré par $T(\Gamma)$ et par $G_0^+$ et est donc, soit le
+	groupe engendré par
+	\begin{enumerate}
+		\item le réseau de translations $T(\Gamma)$ pour $\Gamma \in \C$ un
+			réseau,
+		\item la rotation linéaire $r_{-1, 0}$ et le
+			réseau des translations $T(\Gamma)$,
+		\item la rotation $r_{\omega_3, 0}$ et le réseau de translations
+			$\Gamma = \Z + \Z\omega_3$
+		\item la rotation $r_{i, 0}$ et le réseau de translations
+			$\Gamma = \Z + \Z i$
+		\item la rotation $r_{\omega_6, 0}$ et le réseau de translations
+			$\Gamma = \Z + \Z\omega_3$
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
+	Soit $G$ un groupe cristallographique contenu dans $\Isom(\R^2)^+$
+	(ie. $G = G^+$) et $\mathcal{P}$ un pavage associé.
+	On dit que $\mathcal{P}$ est de type $p1, p2, p3, p4$ ou $p6$, suivant
+	l'ordre maximal des rotations dans $G^+$.
+\end{definition}
+
+
 % thm:fedorov
 \begin{theorem}[Theorème de Fedorov]
 	Il existe 17 classes d'isomorphismes possiles pour un groupe
 	cristallographique.
 \end{theorem}
 
+\subsection{Groupes paveurs}
 
+\begin{definition}
+	Soit $G \in Isom(R^2)$ un \emph{sous-groupe} d'isometries tel qu'il existe une tuile
+	$\mathcal{P}$ telle que
+	\begin{equation*}
+		\mathcal{P}(\mathbf{T}, \Phi) = \{g \cdot \mathbf{T}, g \in G\}
+	\end{equation*}
+	forme un pavage du plan. On dit alors que $G$ est une groupe paveur.
+\end{definition}
+
+\begin{remark}
+	Si $\mathcal{P}$ est un pavage associé à un groupe paveur $G$, alors $G$ est
+	un sous-groupe du groupe des isometries de ce pavage.
+\end{remark}
+
+\begin{remark}
+	$G$ peut être inclus strictement dans $G_\mathcal{P}$
+\end{remark}
+
+\begin{theorem}
+	Soit $G$ un groupe paveur et $T_G$ son sous-groupe des translations.
+	Alors $T_G = T(\Gamma)$ est un réseau de translations: il existe
+	$\gamma_0, \gamma_1 \in \Gamma$, $\R$-linéairement indépendants tels que
+	$\Gamma = \Z\gamma_0 + \Z\gamma_1$. En particulier $\mathcal{P}$ est un pavage
+	régulier.
+\end{theorem}
+
+\begin{proof}
+	Montrons que l'ensembledes vecteurs de translations $\Gamma$ contient deux
+	élements $\R$-linéairement indépendants: on en déduit que $\Gamma$ est un
+	réseau en suivant la preuve du Théorème \ref{thm:translations-reseau} et
+	comme $T(\Gamma) \subset G \subset G_\mathcal{P}$, $\mathcal{P}$ est un
+	pavage régulier.
+
+	$G$ possède un nombre infini d'élements, sinon $\mathcal{P}$ ne peut pas
+	couvrir $\R^2$. On en déduit que $G^+$ est infini, car
+	$G = G^+ \sqcup sG^+$ où $s \in G \setminus G^+$.
+
+	Supposons que $\Gamma = \{0\}$ et qye tous les élements de $G^+$ soient des
+	rotations de même centre, alors $G \cdot \mathbf{T}$ est un ensemble de copies de
+	$\mathbf{T}$ tournant autour de ce centre et ainsi est entièrement contenu
+	dans unu boule. Donc dans ce cas $G \cdot \mathbf{T}$
+	ne peut pas recouvrir $\R^2$.
+
+	Supposons que $\Gamma = \{0\}$ et que $G^+$ contient deux rotations $r$ et
+	$r'$ non triviales et de centres distincts $z \neq z'$.
+	Soient $\alpha, \alpha'$ leurs angles, alors le commutateur
+	\begin{equation*}
+		[r, r'] = rr'r^{-1}r'^{-1}
+	\end{equation*}
+	est une rotation d'angle
+	$[\alpha, \alpha'] = \alpha \alpha' \alpha^{-1} \alpha'^{-1} = 1$ et est donc
+	une translation. Le vecteur de translation est obtenu en calculant l'image
+	d'un point, par exemple $z'' = r'(z)$:
+	\begin{equation*}
+		[r,r'](r'(z)) = rr'r^{-1}(z) = r(r'(z))
+	\end{equation*}
+	et donc
+	\begin{equation*}
+		[r, r'] = t_{r(r'(z)) - r'(z)}
+	\end{equation*}
+	Si le vecteur $\gamma = r(r'(z)) - r'(z)$ était nul, $r'(z)$ serait un point
+	fixe de $r$ donc égal à son centre $z$ et $z$ serait un point fixe de $r'$
+	et donc égal à $z'$. Ainsi $\gamma \neq 0$ et $t_\gamma \in T_G$.
+
+	On a donc montré que $G^+$ contient au moins une translation non-triviale
+	$t_\gamma$.
+
+	Supposons qu'il n'y en ait pas d'autre et que $G^+ = T_G$ soit contenu dans
+	le groupe des translations des vecteurs colineaires à $\gamma$,
+	$T(\R\gamma)$. Si $G = G^+$, c'est impossible car alors $G \cdot \mathbf{T}$
+	serait contenu dans une bande délimitée par deux droites paralelles à
+	$\gamma$.
+
+	Si $G \neq G^+$, alors
+	\begin{equation*}
+		G \subset T(\R\gamma) \sqcup sT(\R\gamma)
+	\end{equation*}
+	et $G \cdot \mathbf{T}$ serait contenu dans deux bandes
+	$T(\R\gamma) \cdot \mathbf{T}$ et $s(T(\R\gamma) \cdot \mathbf{T})$ ce qui à
+	nouveau ne couvre pas $\R^2$.
+
+	On a donc montré que $G^+$ n'est pas contenu dans $T(\R \gamma)$.
+
+	Si $G^+$ contient une translation $t_\gamma'$ avec $\gamma' \notin \R\gamma$
+	on a fini, car $\Gamma$ contient deux élements $R$-linéairement
+	indépendants. Sinon $G^+$ contient une translation affine $r_{\alpha, \nu}$
+	qui n'est pas une translation (i.e son angle $\alpha \neq 1$). On a alors
+	\begin{equation*}
+		r_\alpha \circ t_\gamma \circ r_\alpha^{-1} = t_{r_\alpha(\gamma)} \in G^+
+	\end{equation*}
+	En effet (passant aux complexes)
+	\begin{equation*}
+		r_\alpha \circ t_\gamma \circ r\alpha^{-1} = \alpha(\gamma + \alpha^{-1}z)
+		= \alpha\gamma + z = t_{\alpha\gamma}(z)
+	\end{equation*}
+	donc si $\alpha \neq -1, \gamma' = r_\alpha(\gamma)$ n'est pas colinéaire à
+	$\gamma$ et $T_G$ contient $t_\gamma$ et $t_{\gamma'}$.
+	Finalement, sie les seules rotations non-triviales sont d'angles $\alpha =
+	-1$, on retrouve que $G\cdot\mathbf{T}$ est contenu dans la réunion de
+	quatre bandes ce qui ne permet pas de couvrir le plan $\R^2$
+\end{proof}
