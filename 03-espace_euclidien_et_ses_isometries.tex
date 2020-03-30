@@ -1,0 +1,95 @@
+\section{Espace Euclidien et ses Isometries}
+
+\subsection{Espaces Affines}
+
+\begin{definition}
+	Soit $G$ un groupe et $X$ un $G$-ensemble. $X$ est un espace principal
+	homogène sous l'action de $G$ si
+	\begin{enumerate}
+		\item $G$ agit transitivement sur $X$
+		\item Pour tout $x \in X$, le stabilisateur $G_x$ est trivial
+	\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+	\label{prop:sous-espace-orbite}
+	Soit $X$ un espace principal homogène, alors pour tout $\vec{x} \in X$,
+	l'application
+	\begin{equation*}
+		\varphi : g \in G \mapsto g\cdot\vec{x} \in X
+	\end{equation*}
+	est une bijection.
+\end{proposition}
+
+\begin{proof}
+	Par le Theorème orbite-stabilisateur on a un isomorphisme de $G$-ensembles
+	\begin{equation*}
+		G/G_\vec{x} \cong G\cdot\vec{x}
+	\end{equation*}
+	défini par
+	\begin{align*}
+		\varphi : G/G_\vec{x} &\xrightarrow{\sim}  G\cdot\vec{x}\\
+		gG_\vec{x} &\mapsto g \cdot \vec{x}
+	\end{align*}
+	et $G\cdot\vec{x} = X$ car l'action est transitive et $G_\vec{x} = \{e_G\}$
+	et donc $G/G_\vec{x} = G$. Ainsi $G \cong X$.
+\end{proof}
+
+\begin{proposition}
+	Soit $X$ un espace principal homogène sous l'action de $G$. Soit $\phi$ le
+	morphisme associé à cette action. Alors $\phi$ est injectif.
+	De plus $\im(\phi) \cong G$.
+\end{proposition}
+
+\begin{proof}
+	Puisque pour tout $\vec{x} \in X$, $G_\vec{x} = \{e_G\}$, $\ker(\phi) =
+	\{e_G\}$.
+\end{proof}
+
+\begin{definition}
+	Soit $V$ un $K$-espace vectoriel de dimension finie sur un corps $K$. Un
+	espace affine $X$ sous $V$ est un $V$-ensemble (quand on voit $V$ comme le
+	groupe additif $(V, +)$) qui est principal homogène. On dit que $V$ est la
+	direction de $X$. 
+\end{definition}
+
+\begin{notation}
+	Le groupe des translations de $X$ sous l'action de $V$ sera noté
+	\begin{equation*}
+		T(V) = t_V = \{\phi(\vec{v})\ |\ v \in V\} \subset \Bij(X)
+	\end{equation*}
+	où $\phi$ est le morphisme associé à l'action.
+\end{notation}
+
+\begin{notation}
+	On notera l'action de $V$ sur $X$ avec un $+$. Vu que $(V, +)$ est
+	commutatif, pour $\vec{v} \in V, \vec{x} \in X$, on a que
+	$\vec{v} + \vec{x} = \vec{x} + \vec{v}$ (c'est une action à droite ou à
+	gauche de manière équivalente).
+\end{notation}
+
+\begin{definition}
+	Soit $X$ nun espace affine de direction $V$. On défini la dimension de $X$
+	comme étant la dimension de $V$:
+	\begin{equation*}
+		\dim(X) = \dim(V)
+	\end{equation*}
+\end{definition}
+
+\begin{definition}
+	Soit $X$ un espace affine de direction $V$. Un sous-espace affine de $Y
+	\subset X$ est un sous-ensemble de $X$ qui est un espace affine de direction
+	$W$, où $W$ est un sous-espace vectoriel de $V$.
+\end{definition}
+
+\begin{remark}
+	Par la Proposition \ref{prop:sous-espace-orbite}, un sous-espace affine est
+	de la forme
+	\begin{equation*}
+		Y = \vec{y_0} + W = \{\vec{y_0} + \vec{w}, \vec{w} \in W\}.
+	\end{equation*}
+	pour un certain $\vec{y_0} \in Y$. On dit que $Y$ est un sous-espace affine
+	de direction $W$ passant par $\vec{y_0}$. On a $\dim(Y) = \dim(W)$. Un
+	sous-espace affine de dimension $\dim(Y) = \dim(X) - 1$ est appelé un
+	hyperplan affine.
+\end{remark}

@@ -644,3 +644,81 @@ compact (fermé, borné) et d'intérieur $\interior{\mathbf{T}}$ non vide.
 	-1$, on retrouve que $G\cdot\mathbf{T}$ est contenu dans la réunion de
 	quatre bandes ce qui ne permet pas de couvrir le plan $\R^2$
 \end{proof}
+
+\begin{lemma}
+	\label{lem:sous-groupes-finis}
+	Soit $G$ un groupe et $K \subset H \subset G$ des sous-groupes. Alors le
+	conditions suivantes sont equivalentes:
+	\begin{enumerate}
+		\item $G/K$ est fini.
+		\item $G/H$ et $H/K$ sont finis.
+	\end{enumerate}
+	De plus, on a la relation entre cardinaux
+	\begin{equation*}
+		|G/K|=|G/H||H/K|
+	\end{equation*}
+\end{lemma}
+
+\begin{proposition}
+	Soit $\Gamma' \subset \Gamma \subset \R^2$ deux réseaux contenus l'un dans
+	l'autre alors le groupe quotient ($\Gamma$ est commutatif) $\Gamma/\Gamma'$
+	est fini.
+\end{proposition}
+
+\begin{proof}
+	Comme $\Gamma \supset \Gamma'$ il existe $a, b, c, d \in Z$ t.q.
+	\begin{equation*}
+		\gamma_0' = a \gamma_0 + b \gamma_1\textrm{ et }
+		\gamma_1' = c \gamma_0 + d \gamma_1
+	\end{equation*}
+	mais comme $(\gamma_0', \gamma_1')$ est une base de $\R^2$, la matrice
+	\begin{equation*}
+		\begin{bmatrix}
+			a & b \\
+			c & d
+		\end{bmatrix}
+	\end{equation*}
+	est inversible d'inverse
+	\begin{equation*}
+		\begin{bmatrix}
+			a' & b' \\
+			c' & d'
+		\end{bmatrix}
+		= \frac{1}{ad - bc}
+		\begin{bmatrix}
+			d & -b \\
+			-c & a
+		\end{bmatrix}
+	\end{equation*}
+	et $a', b', c', d' \in \Q$. Posant $\Delta = ad - bc$, on a
+	\begin{equation*}
+		\gamma_0 = \frac{d}{\Delta}\gamma_0' + \frac{-b}{\Delta}\gamma_1'\textrm{ et }
+		\gamma_1 = \frac{-c}{\Delta}\gamma_0' + \frac{a}{\Delta}\gamma_1'
+	\end{equation*}
+	Ainsi
+	\begin{equation*}
+		\Gamma' \subset \Gamma \subset \Gamma'' =
+		\Z \frac{\gamma_0'}{\Delta} + \Z \frac{\gamma_1'}{\Delta}
+	\end{equation*}
+	On peut alors écrire $\Gamma' = \Delta\Gamma''$ et en posant
+	\begin{equation*}
+		\gamma_0'' = \Delta^{-1} \gamma_0' \textrm{ et }
+		\gamma_1'' = \Delta^{-1} \gamma_1'
+	\end{equation*}
+	on a
+	\begin{equation*}
+		\Gamma' = \Delta\Z\gamma_0'' + \Delta\Z\gamma_1'' \subset
+		\Z\gamma_0'' + \Z\gamma_1''
+	\end{equation*}
+	L'application
+	\begin{equation*}
+		(m, n) \in \Z^2 \mapsto m \gamma_0'' + n\gamma_1'' \in \Gamma''
+	\end{equation*}
+	est un isomorphisme de groupe qui identifie $\Delta\Z^2$ à $\Gamma'$. On a
+	donc que 
+	\begin{equation*}
+		\Gamma''/\Gamma' \cong \Z^2/\Delta\Z^2 = (\Z/\Delta\Z)^2
+	\end{equation*}
+	qui est donc fini d'ordre $|\Delta|^2$. Il s'ensuit par le Lemme
+	\ref{lem:sous-groupes-finis} que $\Gamma/\Gamma'$ est fini.
+\end{proof}
