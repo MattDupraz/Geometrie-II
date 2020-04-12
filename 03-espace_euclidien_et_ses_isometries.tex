@@ -62,14 +62,14 @@
 \end{notation}
 
 \begin{notation}
-	On notera l'action de $V$ sur $X$ avec un $+$. Vu que $(V, +)$ est
+	On notera l'action de $V$ sur $X$ vvec un $+$. Vu que $(V, +)$ est
 	commutatif, pour $\vec{v} \in V, \vec{x} \in X$, on a que
 	$\vec{v} + \vec{x} = \vec{x} + \vec{v}$ (c'est une action à droite ou à
 	gauche de manière équivalente).
 \end{notation}
 
 \begin{definition}
-	Soit $X$ nun espace affine de direction $V$. On défini la dimension de $X$
+	Soit $X$ un espace affine de direction $V$. On défini la dimension de $X$
 	comme étant la dimension de $V$:
 	\begin{equation*}
 		\dim(X) = \dim(V)
@@ -93,3 +93,289 @@
 	sous-espace affine de dimension $\dim(Y) = \dim(X) - 1$ est appelé un
 	hyperplan affine.
 \end{remark}
+
+\subsubsection{Relations de Chasles}
+
+Soit $X$ un espace affine de direction $V$. Soient $P, Q \in X$, alors il existe
+un unique vecteur $\vec{v}$ qui envoie $P$ sur $Q$.
+\begin{equation*}
+	P + \vec{v} = Q
+\end{equation*}
+
+\begin{notation}
+	On note $\vec{v} = \vvec{PQ} = Q - P$
+	On a alors $P + \vvec{PQ} = P + Q - P = Q$
+\end{notation}
+
+\begin{proposition}
+	Pour tout $P, Q, R \in X$ on a
+	\begin{equation*}
+		\vvec{PR} = \vvec{PQ} + \vvec{QR}
+	\end{equation*}
+	En particulier
+	\begin{equation*}
+		\vvec{PQ} = -\vvec{QP}
+	\end{equation*}
+\end{proposition}
+
+\begin{proof}
+	$\vvec{PR}$ est l'unique vecteur qui envoie $P$ sur $R$. On va montrer que
+	$\vvec{PQ} + \vvec{PR}$ envoie $P$ sur $R$. Par transitivité de l'action,
+	\begin{equation*}
+		P + (\vvec{PQ} + \vvec{QR}) = (P + \vvec{PQ}) + \vvec{QR} = Q + \vvec{QR}
+		= R
+	\end{equation*}
+\end{proof}
+
+\begin{remark}
+	Dans un espace affine on ne peut pas additionner des points, mais on peut les
+	soustraire.
+	\begin{align*}
+		X\times X &\to V\\
+		(P, Q) &\mapsto Q-P
+	\end{align*}
+\end{remark}
+
+\begin{proposition}
+	Soit $n \geq 1, P_1, \dots, P_n \in X$ des points et
+	$\mu_1, \dots, \mu_n \in \K$ des scalaires tels que
+	\begin{equation*}
+		\sum_{i=1}^{n}\mu_{i} = 0_{\K}
+	\end{equation*}
+	Alors étant donné $P_0 \in X$, le vecteur
+	\begin{equation*}
+		\sum_{i = 1}^{n}\mu_i\left(P_i - P_0\right) =
+		\sum_{i=1}^n \mu_i \vvec{P_0 P_i} \in V
+	\end{equation*}
+	ne dépend pas du choix de $P_0$. On notera ce vecteur
+	\begin{equation*}
+		\sum_{i=1}^n \mu_i P_i
+	\end{equation*}
+\end{proposition}
+
+\begin{remark}
+	Ceci généralise la notation $Q - P$.
+\end{remark}
+
+\begin{proof}
+	Soit $P'_0 \in X$, alors on veut montrer que
+	\begin{equation*}
+		\sum_{i=1}^n \mu_i \vvec{P_0 P_i} = \sum_{i=1}^n \mu_i \vvec{P'_0 P_i}
+	\end{equation*}
+	On calcule la différence
+	\begin{equation*}
+		\sum_{i=1}^n \left(\mu_i \vvec{P_0 P_i} - \mu_i \vvec{P'_0 P_i}\right) =
+		\sum_{i=1}^n \mu_i\left(\vvec{P_0 P_i} - \vvec{P'_0 P_i}\right) = 
+		\sum_{i=1}^n \mu_i \vvec{P_0 P'_0} = \vec{0}
+	\end{equation*}
+\end{proof}
+
+\subsubsection{Barycentres}
+
+\begin{proposition}
+	Soit $X$ un espace affine, $n \geq 1, (P_1, \dots, P_n) \in X^n$ un
+	$n$-uple de points et $(\lambda_1, \dots, \lambda_n) \in \K^n$ un
+	$k$-uple de scalaires verifiant
+	\begin{equation*}
+		\sum_{i=1}^n \lambda_i = 1_{\K}
+	\end{equation*}
+	Soit $P_0 \in X$ un point de $X$, alors le vecteur
+	$\sum_{i=1}^{n} \lambda_i P_i - P_0 = (-1_K)P_0 + \sum_{i=1}^{n} \lambda_i P_i$
+	est bien défini et le point translaté
+	\begin{equation*}
+		P_0 + \left(\sum_{i=1}^{n}\lambda_i P_i - P_0 \right) \in X
+	\end{equation*}
+	ne dépend pas du choix de $P_0$. On l'appele le barycentre (algébrique) des
+	points $(P_1, \dots, P_n)$ par rapport aux poids $(\lambda_1, \dots, \lambda_n)$ 
+	et on le note
+	\begin{equation*}
+		\Bary(P_1, \dots, P_n; \lambda_1, \dots \lambda_n)	
+	\end{equation*}
+	Si tous les poids sont égaux ($\lambda_1 = \dots = \lambda_n$ de sorte que
+	$\sum_{i} \lambda_i = n \cdot \lambda_1 = 1_\K$), on note ce barycentre
+	\begin{equation*}
+		\Bary(P_1, \dots, P_n)
+	\end{equation*}
+\end{proposition}
+
+\begin{proof}
+	Soit $P'_0 \in X$ un autre point, on veut montrer que le vecteur qui envoie
+	le barycentre construit à partir de $P_0$ sur le barycentre construit à
+	partir de $P'_0$ est le vecteur nul.
+	\begin{equation*}
+		P_0 + \left(\sum_{i=1}^n \lambda_i P_i - P_0\right) -
+		\left(P'_0 + \left(\sum_{i=1}^n \lambda_i P_i - P'_0\right)\right)
+	\end{equation*}
+	et ceci vaut
+	\begin{equation*}
+		P_0 - P'_0 + \sum_{i=1}^n \lambda_i \left(P_i - P_i\right) + P'_0 - P_0
+		= \vvec{P'_0 P_0} + \vec{0} + \vvec{P_0 P'_0} = \vec{0}
+	\end{equation*}
+\end{proof}
+
+\begin{remark}
+	Ainsi on peut former des combinaison linéaires des points dans un espace
+	affine si les coefficients de la combinaison linéaire on $1_\K$ pour somme.
+	Par exemple si $\Char(\K) \neq 2$, pour $P_1, P_2 \in X$,
+	$\frac{1}{2}P_1 + \frac{1}{2}P_2 \in X$.
+\end{remark}
+
+\begin{definition}
+	Soit $X$ un espace affine de dimension $d$ et de direction $V$; un
+	$(d+1)$-uplet de points $P_0, \dots, P_d \in X$ est en position générale si
+	les vecteurs $\vvec{P_0 P_1}, \dots, \vvec{P_0 P_d} \in V$ forment une base
+	de $V$. On dira que $(P_0, \dots, P_1)$ forme une base affine de $X$.
+\end{definition}
+
+\begin{proposition}
+	Soeint $X$ un espace affine de dimension $d$ et $P_0, \dots, P_d \in X$ en
+	position générale. Pour tout point $P \in X$ il existe un unique
+	$(d+1)$-uplet $(\lambda_0, \dots, \lambda_d) \in \K^{d+1}$ tel que
+	$\lambda_0 + \dots + \lambda_d = 1$ et
+	$P = \Bary(P_0, \dots, P_d; \lambda_0, \dots, \lambda_d)$
+\end{proposition}
+
+\begin{proof}
+	Laissé au lecteur en exercice.
+\end{proof}
+
+\begin{definition}
+	Le $(d+1)$-uplet $(\lambda_0, \dots, \lambda_d)$ de la proposition précédente
+	sont les coordonnées
+	barycentriques de $P$ dans la base affine $(P_0, \dots, P_d)$.
+\end{definition}
+
+\begin{definition}
+	Une famille affine génératrice est une famille telle que tout point $P \in X$
+	peut être obtenu comme barycentre des points de la famille.
+\end{definition}
+
+\begin{definition}
+	Une famille affine libre est une famille telle que tout barycentre des points
+	de cette famille n'est égal à aucun autre barycentre des points de cette
+	famille.
+\end{definition}
+
+\begin{definition}
+	un sous-espace affine $Y \subset X$ est un sous-ensemble de $X$ obtenu comme
+	l'ensembe de tous les barycentres possibles de $n+1$ points de $X$ --- 
+	$P_0, \dots, P_n \in X$ pour $n \geq 0$ un entier:
+	\begin{equation*}
+		Y = \Big\{\Bary(P_0, \dots, P_n; \lambda_0, \dots, \lambda_n), 
+		\lambda_0, \dots, \lambda_n \in \K, \sum_{i=0}^n \lambda_i = 1\Big\}
+	\end{equation*}
+	On dira alors que $Y$ est le sous-espace affine engendré par $P_0, \dots, P_n$
+	ou encore passant par $P_0, \dots, P_n$.
+\end{definition}
+
+\subsubsection{Morphismes d'espaces affines}
+
+\begin{definition}
+	Soient $X$ et $Y$ deux epsaces affines (de directions $V$ et $W$). Une
+	application $\phi: X \to Y$ est dite affine si elle preserve les barycentres:
+	pour tout $(P_1, \dots, P_n) \subset X^n$ et tout
+	$(\lambda_1, \dots, \lambda_n) \in \K^n$ verifiant
+	$\sum_{i=1}^n \lambda_i = 1$, on a
+	\begin{equation*}
+		\phi(\Bary(P_1, \dots, P_n; \lambda_1, \dots, \lambda_n)) = 
+		\Bary(\phi(P_1), \dots, \phi(P_n); \lambda_1, \dots, \lambda_n)
+	\end{equation*}
+\end{definition}
+
+\begin{proposition}
+	La composée de deux applications affines est affine et la réciproque dune
+	application affine bijective est affine.
+\end{proposition}
+
+\begin{theorem}
+	Soient $X, Y$ deux espace affines (de directions $V$ et $W$). Une application
+	$\phi: X \to Y$ est affine ssi pour $P_0 \in X$ l'application
+	\begin{align*}
+		\phi_0: V &\to W\\
+		\vec{v} &\mapsto \phi_0(\vec{v}) = \phi(P_0 + \vec{v}) - \phi(P_0)	
+	\end{align*}
+	est linéaire. Si c'est le cas, alors $\phi_0$ ne dépend pas du choix de
+	$P_0$. On l'appelle la partie linéaire de $\phi$ et on a la formule suivante
+	\begin{equation*}
+		\forall P\in X, \vec{v} \in V, \phi(P+\vec{v}) = \phi(P) + \phi_0(\vec{v})
+	\end{equation*}
+\end{theorem}
+
+\begin{proof}
+	Supposons que $\phi$ soit une application affine. On fixe $P_0 \in X$ et on pose
+	\begin{equation*}
+		\phi_0(\vec{v}) = \phi(P_0 + \vec{v}) - \phi(P_0)
+	\end{equation*}
+	On a alors que $\phi_0(\vec{0}) = \phi(P_0) - \phi(P_0) = \vec{0}$. Soient
+	$\lambda \in \K, \vec{v}, \vec{u} \in V$, on pose
+	$P = P_0 + \vec{u}\textrm{; } Q = P_0 + \vec{v}$.
+	Ainsi on a
+	\begin{equation*}
+		\Bary(P, Q, P_0; 1, \lambda, -\lambda) = P + \lambda Q  -
+		\lambda P_0  = P_0 + \vec{u} + \lambda \vec{v}
+	\end{equation*}
+	Et donc
+	\begin{align*}
+		\phi_0(\vec{u} + \lambda \vec{v}) &= \phi(P_0 + \vec{u} + \lambda{v})
+		- \phi(P_0) = \phi(\Bary(P, Q, P_0, 1, \lambda, -\lambda)) - \phi(P_0) \\
+      &= \Bary(\phi(P), \phi(Q), \phi(P_0), 1, \lambda, -\lambda) 
+		- \phi(P_0)\\
+		&= \phi(P) + \lambda \phi(Q) - \lambda \phi(P_0) - \phi(P_0)
+		= \phi_0(\vec{u}) + \lambda\phi_0(\vec{v})
+	\end{align*}
+	Ainsi $\phi_0$ est bien linéaire. Montrons que $\phi_0$ ne dépend pas du
+	choix de $P_0$. Soit $P'_0 \in X$ et posons
+	\begin{equation*}
+		\phi'_0(\vec{v}) = \phi(P'_0 + \vec{v}) - \phi(P'_0)
+	\end{equation*}
+	Alors on a que pour tout $\vec{v} \in V$
+	\begin{align*}
+		\phi'_0(\vec{v}) &= \phi(P_0 + \vvec{P_0 P'_0} + \vec{v})
+		- \phi(P_0 + \vvec{P_0 P'_0}) + \phi(P_0) - \phi(P_0) \\
+		&= \phi_0(\vvec{P_0 P'_0} + \vec{v}) - \phi_0(\vvec{P_0 P'_0})
+		= \phi_0(\vec{v})
+	\end{align*}
+	Ainsi pour tout $P \in X$
+	\begin{equation*}
+		\phi(P + \vec{v}) = \phi(P) + \phi_0(\vec{v})
+	\end{equation*}
+
+	Supposons à présent que l'application
+	\begin{equation*}
+		\phi_0(\vec{v}) = \phi(P_0 + \vec{v}) - \phi(P_0)
+	\end{equation*}
+	est linéaire. Alors
+	\begin{align*}
+		\phi(\Bary(P_1, \dots, P_n; \lambda_1, \dots \lambda_n))
+		&= \phi\left(\sum_{i=1}^n \lambda_i P_i\right)
+		= \phi_0\left(\sum_{i=1}^n \lambda_i P_i - P_0\right) + \phi(P_0)\\
+		&= \sum_{i=1}^n \lambda_i \phi_0(P_i - P_0) + \phi(P_0)
+		= \sum_{i=0}^n \lambda_i \phi(P_i) \\
+		&= \Bary(\phi(P_1), \dots, \phi(P_n); \lambda_1, \dots, \lambda_n))
+	\end{align*}
+\end{proof}
+
+\begin{proposition}[Composition d'applications affines]
+	Soient $X, Y, Z$ des espaces affines et $\phi: X \to Y$, 
+	$\psi: Y \to Z$ des applications affines. Alors
+	$\psi \circ \phi : X \to Z$ est affine et sa partie linéaire est
+	\begin{equation*}
+		(\psi \circ \phi)_0 = \psi_0 \circ \phi_0
+	\end{equation*}
+	Supposons que $\phi: X \to Y$ soit bijective, alors sa réciproque $\phi^{-1}$
+	est affine et $(\phi^{-1}_0) = \phi_0^{-1}$
+\end{proposition}
+
+\begin{proof}
+	D'une part
+	\begin{equation*}
+		\psi \circ \phi (P_0 + \vec{v}) = \psi(\phi(P_0) + \phi_0(\vec{v}))
+		= \psi(\phi(P_0)) + \psi_0(\phi_0(\vec{v}))
+	\end{equation*}
+	et d'autre part 
+	\begin{equation*}
+		\psi \circ \phi (P_0 + \vec{v})
+		= \psi \circ \phi(P_0) + (\psi \circ \phi)_0(\vec{v})
+	\end{equation*}
+	Et donc on a bien que $(\psi \circ \phi)_0 = \psi_0 \circ \phi_0$ 
+\end{proof}
