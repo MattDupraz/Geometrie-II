@@ -282,10 +282,48 @@ un unique vecteur $\vec{v}$ qui envoie $P$ sur $Q$.
 	\end{equation*}
 \end{definition}
 
-\begin{proposition}
-	La composée de deux applications affines est affine et la réciproque dune
-	application affine bijective est affine.
+\begin{proposition}[Composition d'applications affines]
+	Soient $X, Y, Z$ des espaces affines et $\phi: X \to Y$, 
+	$\psi: Y \to Z$ des applications affines. Alors
+	$\psi \circ \phi : X \to Z$ est affine et sa partie linéaire est
+	\begin{equation*}
+		(\psi \circ \phi)_0 = \psi_0 \circ \phi_0
+	\end{equation*}
+	Supposons que $\phi: X \to Y$ soit bijective, alors sa réciproque $\phi^{-1}$
+	est affine et $(\phi^{-1}_0) = \phi_0^{-1}$
 \end{proposition}
+
+\begin{proof}
+	D'une part
+	\begin{equation*}
+		\psi \circ \phi (P_0 + \vec{v}) = \psi(\phi(P_0) + \phi_0(\vec{v}))
+		= \psi(\phi(P_0)) + \psi_0(\phi_0(\vec{v}))
+	\end{equation*}
+	et d'autre part 
+	\begin{equation*}
+		\psi \circ \phi (P_0 + \vec{v})
+		= \psi \circ \phi(P_0) + (\psi \circ \phi)_0(\vec{v})
+	\end{equation*}
+	Et donc on a bien que $(\psi \circ \phi)_0 = \psi_0 \circ \phi_0$ 
+\end{proof}
+
+\begin{definition}
+	\begin{itemize}
+		\item Un \emph{endomorphisme} affine est une application affine d'un
+			espace affine sur lui-même.
+		\item Un isomorphisme d'espaces affines est une application affine
+			qui est bijective et dont l'applcation reciproque est encore affine.
+		\item Un automorphisme affine est un isomorphisme d'une espace affine sur
+			lui-même. On l'appelle également transformation affine.
+	\end{itemize}
+	On note ses ensebles respectivement par
+	\begin{equation*}
+		\Hom_{aff}(X, Y) = A \Hom(X, Y), \End_{aff}(X) = A\End(X),
+		\Aut_{aff}(X) = A\GL(X)
+	\end{equation*}
+\end{definition}
+
+
 
 \begin{theorem}
 	Soient $X, Y$ deux espace affines (de directions $V$ et $W$). Une application
@@ -355,27 +393,268 @@ un unique vecteur $\vec{v}$ qui envoie $P$ sur $Q$.
 	\end{align*}
 \end{proof}
 
-\begin{proposition}[Composition d'applications affines]
-	Soient $X, Y, Z$ des espaces affines et $\phi: X \to Y$, 
-	$\psi: Y \to Z$ des applications affines. Alors
-	$\psi \circ \phi : X \to Z$ est affine et sa partie linéaire est
+\begin{corollary}
+	Soit $V$ un $\K$-espace vectoriel et $\phi$ un endomorphisme affine de $V$
+	sur $V$ alors $\phi$ se décompose de manière unique sous la forme
 	\begin{equation*}
-		(\psi \circ \phi)_0 = \psi_0 \circ \phi_0
+		\phi = t_{\phi(\vec{0})}\circ\phi_0
 	\end{equation*}
-	Supposons que $\phi: X \to Y$ soit bijective, alors sa réciproque $\phi^{-1}$
-	est affine et $(\phi^{-1}_0) = \phi_0^{-1}$
+	où $\phi_0$ est la partie linéaire.
+\end{corollary}
+
+\begin{corollary}
+	L'application "partie linéaire"
+	$\lin: \phi \in A\GL(X) \mapsto \phi_0 \in \GL(V)$ est un morphisme de
+	groupes de noyau correspondant au groupe des translations $T(V)$. En
+	particulier $T(V)$ est distingué dans $A\GL(X)$.
+\end{corollary}
+
+\begin{proof}
+	Par la proposition précédente à $X=Y=Z$, $\lin$ est un morphisme de
+	groupes. Comme
+	\begin{equation*}
+		t_{\vec{u}}(P) = P + \vec{u},
+	\end{equation*}
+	on a pour tout $\vec{v}\in V$
+	\begin{equation*}
+		\lin(t_\vec{u})(\vec{v})=\vvec{t_{\vec{u}}(P_0)t_{\vec{u}}(P_0 + \vec{v})}
+		= P_0 + \vec{v} + \vec{u} - (P_0 + \vec{u}) = \vec{v} = \id_V(\vec{v})
+	\end{equation*}
+	Réciproquement si $\lin(\phi) = \id$ on a
+	\begin{equation*}
+		\phi(P) = \phi(P_0 + P - P_0) = \phi(P_0) + \phi_0(P - P_0) = \phi(P_0) +
+		P - P_0 = P + \vvec{P_0\phi(P_0)}
+	\end{equation*}
+	 et donc
+	 \begin{equation*}
+		 \phi=t_{\vvec{P_0\phi(P_0)}}
+	 \end{equation*}
+	 et $\ker(\lin) = T(V).$
+\end{proof}
+
+\begin{corollary}
+	Soit $\phi: X\to Y$ une application affine. Son image $\im\phi$ est un
+	sous-espace affine de $Y$ sous l'action de $\im\phi_0$.
+	Pour tout $y \in Y$, la préimage
+	\begin{equation*}
+		\phi^{-1}[y] = \{ x\in X\ |\ \phi(x) = y\}
+	\end{equation*}
+	est soit l'ensemble vide (si $y \notin T$) ou un sous-espace affine de $X$
+	sous l'action de $ker(\phi_0)$. On a la relation
+	\begin{equation*}
+		\dim X = \dim V = \dim (\ker \phi_0) + \dim (\im \phi)
+	\end{equation*}
+\end{corollary}
+
+\begin{corollary}
+	Une application affine $\phi:X\to Y$ est
+	\begin{itemize}
+		\item injective ssi $\phi_0$ l'est
+		\item surjective ssi $\phi_0$ l'est
+		\item surjective ssi $\dim \im \phi = \dim Y$
+		\item un isomorphisme affine ssi $\phi_0$ est bijective
+	\end{itemize}
+\end{corollary}
+
+\subsection{L'espace euclidien}
+
+\begin{definition}
+	Soit $E$ un espace affine de direction $\R^n$. Alors $E$ est dit
+	\emph{euclidien} muni d'un produit scalaire.
+\end{definition}
+
+\begin{definition}
+	Le \emph{produit scalaire} de deux vecteurs $\vec{u} = (u_1, \dots, u_n)$,
+	$\vec{v} = (v_1, \dots, v_n)$ est donné par
+	\begin{equation*}
+		\vec{u} \cdot \vec{v} = \langle \vec{u}, \vec{v} \rangle := 
+		u_1v_1 + \dots + u_nv_n
+	\end{equation*}
+	Le produit scalaire est une forme bilinéaire symétrique définie positive.
+\end{definition}
+
+\begin{proposition}
+	On déduit de la symétrie et de la bilinéarité du produit scalairs, de
+	propriétés dites de \emph{polarisation}:
+	\begin{align*}
+		\|\vec{u} \pm \vec{v}\|^2 &= \|\vec{u}\|^2 \pm 2 \langle \vec{u},
+		\vec{v} \rangle \\
+		\langle \vec{u}, \vec{v} \rangle &= \frac{1}{2}(\|\vec{u}\|^2 +
+			\|\vec{v}\| - \|\vec{u} - \vec{v}\|^2) \\
+		\langle \vec{u}, \vec{v} \rangle &= \frac{1}{4}(\|\vec{u} -
+			\vec{v}\|^2 - \|\vec{u} - \vec{v}\|^2)
+	\end{align*}
+\end{proposition}
+
+\begin{definition}
+	La \emph{norme euclidienne} d'un vecteur $\vec{u}$ est donnée
+	par 
+	\begin{equation*}
+		\|\vec{u}\| = \sqrt{\langle \vec{v}, \vec{v} \rangle}
+	\end{equation*}
+\end{definition}
+
+\begin{definition}
+	La \emph{distance euclidienne} entre deux vecteurs $\vec{v}, \vec{u} \in E$
+	est donnée par
+	\begin{equation*}
+		d(\vec{v}, \vec{u}) = \|\vec{v}-\vec{u}\|
+	\end{equation*}
+\end{definition}
+
+\begin{theorem}
+	La norme euclidienne satisfait les propriétés suivantes
+	pour tout $\vec{u}, \vec{v} \in E, \lambda \in \R$:
+	\begin{itemize}
+		\item Séparation des points: pour tout
+			\begin{equation*}
+				\|\vec{u}\| = 0 \iff \vec{u} = \vec{0}
+			\end{equation*}
+		\item Inégalité du traingle:
+			\begin{equation*}
+				\|\vec{u} + \vec{v}\| \leq \|\vec{u}\| + \|\vec{v}\|
+			\end{equation*}
+		\item Homogénité
+			\begin{equation*}
+				\|\lambda\vec{u}\| = |\lambda|\|\vec{u}\|
+			\end{equation*}
+	\end{itemize}
+	La distance euclidienne stasifait des propriétés analogues.
+\end{theorem}
+
+\begin{proposition}[Inegalité de Cauchy-Schwarz]
+	On a 
+	\begin{equation*}
+		|\langle \vec{u}, \vec{v}\rangle| \leq \|\vec{u}\|\|\vec{v}\|
+	\end{equation*}
+	avec égalité ssi $\vec{u}, \vec{v}$ sont proportionnels.
+\end{proposition}
+
+\begin{definition}
+	Deux vecteurs $\vec{u}, \vec{v} \in E$ tels que $\langle \vec{u}, \vec{v}
+	\rangle = 0$, sont dit orthogonaux ou perpendiculaires.
+\end{definition}
+
+\begin{proposition}
+	Soeint $\vec{v}_1, \dots, \vec{v}_m \in E$ des vecteurs deux a deux
+	perpendiculaires, alors $\{\vec{v}_1, \dots \vec{v}_m\}$ est une famille
+	libre.
+\end{proposition}
+
+\begin{definition}
+	Soit $(\vec{v}_1, \dots, \vec{v}_m)$ une famille de vecteurs
+	perpendiculaires. Alors si tous le svecteurs sont de norme $1$, alors on dit
+	que la famille est orthonormée. Si $m = \dim E$, cette famille est
+	une base et est appellée une base orthogonale (resp. orthonormale si la
+	famille est orthonormée)
+\end{definition}
+
+\begin{proposition}
+	Soit $(\vec{v}_1, \dots, \vec{v}_n)$ une base orthogonale de $\R^n$. Pour
+	tout vecteur $\vec{x} \in \R^n$ la décomposition en combinaison linéaire de
+	cette base s'écrit
+	\begin{equation*}
+		\vec{x} = \lambda_1 \vec{v}_1 + \dots + \lambda_n \vec{v}_n
+	\end{equation*}
+	avec
+	\begin{equation*}
+		\lambda_i = \frac{\langle \vec{x}, \vec{v}_i \rangle}{\langle \vec{v}_i, 
+		\vec{v}_i \rangle}, \forall i \in \{1, \dots, n\}
+	\end{equation*}
+\end{proposition}
+
+\begin{theorem}
+	Soit $(\vec{u}_1, \dots, \vec{u}_n)$ une base de $\R^n$, il existe une base
+	orthonormée $(\vec{v}_1, \dots, \vec{v}_n)$ orthonormée telle que
+	\begin{equation*}
+		\spn\{ \vec{u}_1, \dots, \vec{u}_i \} = \spn\{ \vec{v}_1,\dots,
+		\vec{v}_i\}, \forall i \in \{1, \dots, n\}
+	\end{equation*}
+\end{theorem}
+
+\subsection{La structure du groupe des isometries}
+
+\begin{definition}
+	Une application $\phi: \R^n \to \R^n$ est une isometrie si elle preserve la
+	distance euclidienne:
+	\begin{equation*}
+		\forall P, Q \in \R^n, d(P, Q) = d(\phi(P), \phi(Q))
+	\end{equation*}
+	On note $\Isom(\R^n)$ l'ensemble des isometries et $\Isom(\R^n)_0$ le
+	sous-ensemble des isometries qui fixent le vecteur nul $\vec{0}$.
+\end{definition}
+
+\begin{proposition}
+	Soit $\phi \in \Isom(\R^n)_0$, alors $\phi$ preserve le produit scalaire des
+	vecteurs:
+	\begin{equation*}
+		\inner{\phi(\vec{u})}{\phi(\vec{v})} = \inner{\vec{u}}{\vec{v}} 
+	\end{equation*}
 \end{proposition}
 
 \begin{proof}
-	D'une part
-	\begin{equation*}
-		\psi \circ \phi (P_0 + \vec{v}) = \psi(\phi(P_0) + \phi_0(\vec{v}))
-		= \psi(\phi(P_0)) + \psi_0(\phi_0(\vec{v}))
-	\end{equation*}
-	et d'autre part 
-	\begin{equation*}
-		\psi \circ \phi (P_0 + \vec{v})
-		= \psi \circ \phi(P_0) + (\psi \circ \phi)_0(\vec{v})
-	\end{equation*}
-	Et donc on a bien que $(\psi \circ \phi)_0 = \psi_0 \circ \phi_0$ 
+	Soient $\vec{u} = \vvec{0P}, \vec{v} = \vvec{0Q}$, alors
+	\begin{align*}
+		\inner{\phi(\vec{u})}{\phi(\vec{v})} &= \frac{1}{2}(\|\phi(\vec{u})\|^2 +	
+		\|\phi(\vec{v})\|^2 - \| \phi(\vec{u}) - \phi(\vec{v}) \|^2)\\
+		&= \frac{1}{2}(\| \vec{u} \|^2 + \| \vec{v} \|^2 + d(\phi(P), \phi(Q))^2)\\
+		&= \frac{1}{2}(\| \vec{u} \|^2 + \| \vec{v} \|^2 + d(P, Q)^2)\\
+		&= \frac{1}{2}(\| \vec{u} \|^2 + \| \vec{v} \|^2
+			+ \|\vec{u} - \vec{v}\|^2)\\
+		&= \inner{\vec{u}}{\vec{v}}
+	\end{align*}
 \end{proof}
+
+\begin{theorem}
+	Les isometries fixant l'origine $\vec{0}$ sont des applications linéaires sur
+	$\R^n$. Ces applications sont bijectives.
+\end{theorem}
+
+\begin{proof}
+	\begin{align*}
+		\| \phi(\lambda \vec{u} + \vec{v})
+		&- (\lambda \phi(\vec{u}) + \phi(\vec{v}))\|^2 =\\
+		&= \inner{\phi(\lambda \vec{u} + \vec{v})
+		- \lambda \phi(\vec{u}) - \phi(\vec{v})}{\phi(\lambda \vec{u} + \vec{v})
+		- \lambda \phi(\vec{u}) - \phi(\vec{v})}
+		\\
+		&= \inner{\phi(\lambda \vec{u} + \vec{v})}{\phi(\lambda \vec{u} + \vec{v})}
+		+ \lambda^2 \inner{\phi(\vec{u})}{\phi(\vec{u})}
+		+ \inner{\phi(\vec{v})}{\phi(\vec{v})}\\
+		&\quad- 2\lambda\inner{\phi(\lambda\vec{u} + \vec{v})}{\phi(\vec{u})}
+		- 2\inner{\phi(\lambda\vec{u} + \vec{v})}{\phi(\vec{v})}
+		+ 2\lambda\inner{\phi(\vec{u})}{\phi(\vec{v})}
+		\\
+		&= \inner{\lambda \vec{u} + \vec{v}}{\lambda \vec{u} + \vec{v}}
+		+ \lambda^2 \inner{\vec{u}}{\vec{u}}
+		+ \inner{\vec{v}}{\vec{v}}\\
+		&\quad- 2\lambda\inner{\lambda\vec{u} + \vec{v}}{\vec{u}}
+		- 2\inner{\lambda\vec{u} + \vec{v}}{\vec{v}}
+		+ 2\lambda\inner{\vec{u}}{\vec{v}}
+		\\
+		&= \inner{0}{0} = 0
+	\end{align*}
+\end{proof}
+
+\begin{definition}
+	L'ensemble $\Isom(\R^n)_0$ s'appelle l'ensemble des isometries linéaires de
+	l'espace. Par opposition un élement général de $\Isom(\R^n)$ sera appelé une
+	\emph{isometrie affine}.
+\end{definition}
+
+\begin{theorem}
+	Une isometries est une transformation affine. Ainsi les ensembles
+	$\Isom(\R^n), T(\R^n)$ et $\Isom(\R^n)_0$ sont des sous-groupes du groupe des
+	transformations affines $A\GL(\R^n)$. Le groupe $\Isom(\R^n)_0$ est un
+	sous-groupe du groupe $\GL(\R^n)$ des applications linéaires inversibles de
+	$\R^n$. Le sous-groupe $T(\R^n)$ est distingué dans $\Isom(\R^n)$ et
+	$\Isom(\R^n)$ est engendré par ses deux sous-groupes,
+	\begin{equation*}
+		\Isom(\R^n) = T(\R^n) \circ \Isom(\R^n)_0
+	\end{equation*}
+	Toute isometrie $\phi$ se décompose de manière unique sous la forme
+	\begin{equation*}
+		\phi = t_{\phi(0)} \circ \phi_0
+	\end{equation*}
+	où $\phi_0$ est la partie linéaire de $\phi$.
+\end{theorem}
