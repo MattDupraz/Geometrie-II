@@ -634,6 +634,12 @@ un unique vecteur $\vec{v}$ qui envoie $P$ sur $Q$.
 		\\
 		&= \inner{0}{0} = 0
 	\end{align*}
+	$\phi$ est bijective, car elle est injective: soient $P, Q \in R^n$,
+	\begin{equation*}
+		\phi(P) = \phi(Q) \implies d(\phi(P), \phi(Q)) = 0 \implies
+		d(P, Q) = 0 \implies P = Q
+	\end{equation*}
+	et c'est une application linéaire entre espace vectoriels de même dimension.
 \end{proof}
 
 \begin{definition}
@@ -643,7 +649,7 @@ un unique vecteur $\vec{v}$ qui envoie $P$ sur $Q$.
 \end{definition}
 
 \begin{theorem}
-	Une isometries est une transformation affine. Ainsi les ensembles
+	Une isometrie est une transformation affine. Ainsi les groupes
 	$\Isom(\R^n), T(\R^n)$ et $\Isom(\R^n)_0$ sont des sous-groupes du groupe des
 	transformations affines $A\GL(\R^n)$. Le groupe $\Isom(\R^n)_0$ est un
 	sous-groupe du groupe $\GL(\R^n)$ des applications linéaires inversibles de
@@ -658,3 +664,152 @@ un unique vecteur $\vec{v}$ qui envoie $P$ sur $Q$.
 	\end{equation*}
 	où $\phi_0$ est la partie linéaire de $\phi$.
 \end{theorem}
+
+\begin{proof}
+	On a que $T(\R^n), \Isom(\R^n)_0 \subset \Isom(\R^n)$, ce sont des
+	sous-groupes du groupe des transformations affines.
+	Soit $\phi\in\Isom(\R^n)$. On décompose $\phi$ en une translation et une
+	isometrie fixant l'origine fixant $\vec{0}$.
+	Posons $\phi_0 = t_{-\phi(\vec{0})} \circ \phi$, alors $\phi_0$ est une
+	isometrie (c'est la composée de 2 isometries). De plus
+	\begin{equation*}
+		\phi_0(0) = t_{-\phi(0)} \circ \phi(0) = \phi(0) - \phi(0) = 0
+	\end{equation*}
+	Ainsi $\phi_0$ est une isometrie fixant l'origine, donc elle est linéaire et
+	bijective, et ainsi $\phi$ est bijective.
+\end{proof}
+
+\subsection{Le groupe des isometries linéaires et des matrices orthogonales}
+
+\begin{theorem}
+	Soit $\phi: \R^n \to \R^n$ une application linéaire. Alors $\phi$ est une
+	isometrie ssi l'une des conditions suivantes est satisfaite:
+	\begin{enumerate}
+		\item $\forall \vec{u}, \vec{v}, \inner{\phi(\vec{u})}{\phi(\vec{v})}
+			= \inner{\vec{u}}{\vec{v}}$
+		\item $\forall \vec{v} \in \R^n, \|\phi(\vec{v})\| = \|\vec{v}\|$
+		\item $\phi$ est inversible et $\forall \vec{u}, \vec{v} \in \R^n,
+			\inner{\phi(\vec{u})}{\vec{v}} = \inner{\vec{u}}{\phi^{-1}(\vec{v})}$
+		\item $\phi$ transforme toute base orthonormée $(\vec{e}_i)_{i\leq n}$ en
+			une base orthonormée $(\phi(\vec{e}_i))_{i\leq n}$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	On a que les condition 1. et 2. sont équivalentes et charactéristiques des
+	isometries. Si $\phi$ preserve le produit scalaire, alors
+	\begin{equation*}
+		\inner{\phi(\vec{u})}{\vec{v}} =
+		\inner{\phi(\vec{u})}{\phi(\phi^{-1}(\vec{v}))} =
+		\inner{\vec{u}}{\phi^{-1}(\vec{v})}
+	\end{equation*}
+	Réciproquement si 3. est vérifiée, alors
+	\begin{equation*}
+		\inner{\phi(\vec{u})}{\phi(\vec{v})} =
+		\inner{\vec{u}}{\phi(\phi^{-1}(\vec{v}))} =
+		\inner{\vec{u}}{\vec{v}}
+	\end{equation*}
+	Soit $\phi$ une isometrie linéaire et $(\vec{e}_i)_{i\leq n}$ une base
+	orthonormée, on a pour $i, j \leq n$
+	\begin{equation*}
+		\inner{\phi(\vec{e}_i)}{\phi(\vec{e}_j)} = \inner{\vec{e}_i}{\vec{e}_j} =
+		\delta_{ij}
+	\end{equation*}
+	ainsi $(\phi(\vec{e}_i))_{i\leq n}$ est orthonormée. Réciproquement, si
+	$\phi$ transforme toute base orthonormée en une base orthonormée,
+	\begin{align*}
+		\|\phi(\vec{v)}\|^2 &= \inner{\phi(\vec{v})}{\phi(\vec{v})} = 
+		\inner{\sum_{i=1}^n \lambda_i\phi(\vec{e}_i)}{\sum_{i=1}^n
+		\lambda_j\phi(\vec{e}_j)}\\
+		&= \sum_{i,j=1}^n\lambda_i\lambda_j\inner{\phi(\vec{e}_i)}{\phi(\vec{e}_j)}
+		= \sum_{i=1}^n\lambda_i^2 = \|\vec{v}\|^2
+	\end{align*}
+\end{proof}
+
+\subsubsection{Matrices des isometries linéaires}
+
+Soit $\phi: \R^n \to \R^n$ une application linéaire. On note $M_\phi$ sa matrice
+dans la base canonique:
+\begin{equation*}
+	M_\phi = (x_{ij})_{1\leq i,j\leq n} =
+	\begin{pmatrix}
+		x_{11} & \cdots & x_{1n} \\
+		\vdots & \ddots & \vdots \\
+		x_{n1} & \cdots & x_{nn}
+	\end{pmatrix}
+\end{equation*}
+où pour $1 \leq j \leq n$
+\begin{equation*}
+	\phi(\vec{e}_j) = \sum_{i=1}^n x_{ij}\vec{e}_i
+\end{equation*}
+
+\begin{theorem}
+	L'application linéaire $\phi$ est une isometrie ssi $M_{\phi}$ est
+	orthogonale.
+\end{theorem}
+
+\begin{proof}
+	On a que $(\phi(\vec{e}_i))_{i\leq n}$ est une base orthonormale, mais on a
+	que $\phi(\vec{e}_i) = (x_{1i}, \cdots, x_{ni})$ exprimé dans la base
+	canonique. Mais ceci sont exactement les colonnes de $M_\phi$. Ainsi les
+	colonnes de $M_\phi$ forment une base orthonormée et donc $M_\phi$ est
+	orthogonale.
+\end{proof}
+
+\begin{definition}
+	Si $\det M = +1$, alors cette matrice est dite spéciale, et si $\det M = -1$,
+	elle est dite non-spéciale. On note respectivement
+	\begin{equation*}
+		O_n(\R), O_n(\R)^+ = SO_n(\R), O_n(\R)^-
+	\end{equation*}
+	l'ensemble des matrices orthogonales, orthogonales speciales et orthogonales
+	non-spéciales.
+\end{definition}
+
+\begin{definition}
+	Une isometrie linéaire $\phi$ sera dite spéciale ou non-spéciale si sa
+	matrice $M_\phi$ est spéciale ou non-spéciale. On note respectivement
+	\begin{equation*}
+		\Isom(\R^n)^+_0 = SO(\R^n), \Isom(\R^n)^-_0
+	\end{equation*}
+	l'ensemble des isometries spéciales ou non-spéciales
+\end{definition}
+
+\subsubsection{Orientation}
+
+\begin{proposition}
+	Le groupe $\Isom(\R^n)_0$ agit transitivement sur l'ensemble des bases
+	orthonormées de $\R^n$ -- $BO_n$:
+	soit $B_0 = (\vec{e}_i^0)_{i \leq n}$ la base canonique, on a
+	\begin{equation*}
+		BO_n = \Isom(\R^n)_0 \cdot B_0
+	\end{equation*}
+	Le groupe $Isom(\R^n)_0^+$ agit avec deux orbites,
+	\begin{align*}
+		BO_n^+ &= \Isom(\R^n)_0^+ \cdot B_0 \\
+		BO_n^- &= \Isom(\R^n)_0 \cdot (-\vec{e}_1^0, \cdots, \vec{e}_n^0)
+	\end{align*}
+\end{proposition}
+
+\subsubsection{Propriétés spectrales des isometries}
+
+\begin{proposition}
+	Soit $\phi$ une isometries sur $\R^n$, alors toute valeur propre réelle, si
+	elle existe, vaut $\pm 1$.
+\end{proposition}
+
+\begin{proposition}
+	Supposons $n$ impair et soit $\phi$ une isometrie linéaire, alors $\phi$
+	possède une valeur propre réelle et un vecteur propre de longueur $1$ -- il
+	existe $\vec{e} \in \R^n$ et $\lambda = \pm 1$ avec $\phi(\vec{e}) = \lambda
+	\vec{e}$. De plus si $\phi \in SO(\R^n)$, $\lambda = 1$.
+\end{proposition}
+
+\begin{proof}
+	Le polynôme charactéristique de $\phi$ est d'ordre impair, ainsi il s'anulle
+	en un certain point $\lambda$. Par la proposition précédente $\lambda = \pm
+	1$. De plus $p_\phi(0) = \det M_\phi$, donc si $\phi \in SO(\R^n)$, on a que 
+	$p_\phi(0) = 1$ et comme $\lim_{x\to \infty} p_\phi(x) = -\infty$, par le
+	TVI, il existe $\lambda \in ]0, \infty[$ t.q. $p_\phi(\lambda) = 0$, et donc 
+	$\lambda = 1$.
+\end{proof}
