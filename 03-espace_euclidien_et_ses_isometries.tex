@@ -787,14 +787,14 @@ où pour $1 \leq j \leq n$
 	Le groupe $Isom(\R^n)_0^+$ agit avec deux orbites,
 	\begin{align*}
 		BO_n^+ &= \Isom(\R^n)_0^+ \cdot B_0 \\
-		BO_n^- &= \Isom(\R^n)_0 \cdot (-\vec{e}_1^0, \cdots, \vec{e}_n^0)
+		BO_n^- &= \Isom(\R^n)_0^+ \cdot (-\vec{e}_1^0, \cdots, \vec{e}_n^0)
 	\end{align*}
 \end{proposition}
 
 \subsubsection{Propriétés spectrales des isometries}
 
 \begin{proposition}
-	Soit $\phi$ une isometries sur $\R^n$, alors toute valeur propre réelle, si
+	Soit $\phi$ une isometrie sur $\R^n$, alors toute valeur propre réelle, si
 	elle existe, vaut $\pm 1$.
 \end{proposition}
 
@@ -812,4 +812,128 @@ où pour $1 \leq j \leq n$
 	$p_\phi(0) = 1$ et comme $\lim_{x\to \infty} p_\phi(x) = -\infty$, par le
 	TVI, il existe $\lambda \in ]0, \infty[$ t.q. $p_\phi(\lambda) = 0$, et donc 
 	$\lambda = 1$.
+\end{proof}
+
+\begin{theorem}
+	Soit $\phi \in \Isom(\R^n)_0$ une isometrie linéaire et $W \in \R^n$ un
+	sous-espace qui est stable par $\phi$, alors $W^\perp$ est un SEV stable par
+	$\phi$. Soit $B$ une base formée d'une BO de $W$ et de $W^\perp$, alors la
+	matrice de $\phi$ dans cette base est une matrice blocs:
+	\begin{equation*}
+		M_{\phi, B} = 
+		\begin{pmatrix}
+			M_{\phi, B_W} & 0 \\
+			0 & M_{\phi, B_{W^\perp}}
+			
+		\end{pmatrix}
+	\end{equation*}
+	En particulier on a
+	\begin{equation*}
+		\det(M_{\phi, B}) = \det(M_{\phi, B_W})\det(M_{\phi, B_{W^\perp}})
+	\end{equation*}
+\end{theorem}
+
+\begin{proof}
+	$W^\perp$ est un SEV de $\R^n$ et $\R^n = W\oplus W^\perp$. Soit $\vec{u} \in
+	W^\perp$, on va montrer que $\phi(\vec{u}) \in W^\perp$.
+	On a que pour tout $\vec{w} \in W$, $\inner{\vec{u}}{\vec{w}} = 0$. En
+	particulier, puisque $\phi$ est injective, et $\phi(W) \subset W$, ceci
+	implique que $\phi(W) = W$ et donc pour tout $\vec{w} \in W$, 
+	$\phi^{-1}(\vec{w}) \in W$, donc $\inner{\vec{u}}{\phi^{-1}(\vec{w})} = 0$,
+	et par conséquent, $\inner{\phi(\vec{u})}{\vec{w}} = 0$ pour tout 
+	$\vec{u} \in W^\perp$, ainsi $W^\perp$ est stable par $\phi$.
+	La matrice de l'application $\phi$ restreinte à $W$ et $W'$, est orthogonale
+	dans des BON de $W$ et $W^\perp$ resp. Si on a deux telles bases, $B_W$ et
+	$B_{W^\perp}$, alors leur union $B$ est une BON de $\R^n$. Comme
+	$\phi(W) \subset W$ et $\phi(W^\perp) \subset W^\perp$, la matrice de 
+	$\phi$ dans la base $B$ est une matrice bloc formée des deux matrices de
+	$\phi$ associées.
+\end{proof}
+
+\begin{theorem}
+	Soit $n \geq 1$ un entier impair et $\phi \in \Isom(\R^n)_0$ une isometrie
+	linéaire; il existe une base orthonormée que l'on peut supposer orientée
+	$B = (\vec{e}_1, \cdots, \vec{e}_n)$ telle que $M_{\phi, B}$ est de la forme
+	\begin{equation*}
+		M_{\phi, B} =
+		\begin{pmatrix}
+			\pm 1 & 0 \\
+			0 & M_{n-1}
+		\end{pmatrix}
+	\end{equation*}
+	et $\det(M_{\phi, B}) = (\pm 1) M_{n-1}$
+\end{theorem}
+
+\begin{proof}
+	Puisque $n$ est impair, $\phi$ admet une valeur propre $\vec{v}$ qui associée
+	à la valeur propre $\lambda = \pm 1$. L'espace engendré par $\vec{v}$
+	est stable par $\phi$, ainsi on conclut par le theorème précédent.	
+\end{proof}
+
+\begin{definition}
+	L'enseble des isometries
+	$\Isom(\R^n)^+ = \{\phi \in \Isom(\R^n), \phi_0 \in \Isom(\R^n)_0^+\}$
+	est appellé le groupe des déplacemments affines.
+	Son complémentaire est appellé l'ensemble des anti-déplacements affines.
+\end{definition}
+
+\begin{theorem}
+	L'ensemble des déplacements affines forme un sous-groupe distingué de 
+	$\Isom(\R^n)$ d'indice 2.
+\end{theorem}
+
+\begin{proof}
+	On a que $\Isom(\R^n)^+ = \ker(\det \circ \lin)$, ainsi $\Isom(\R^n)^+$
+	est un sousgroupe distingué de $\Isom(\R^n)$.
+	l'image de $\det \circ \lin$ est $\{ \pm 1 \}$, ainsi, par le theorème noyau
+	image, $\Isom(\R^n)/\Isom(\R^n)^+ \cong \{ \pm 1\}$ et donc l'indice de
+	$\Isom(\R^n)^+$ dans $\Isom(\R^n)$ est $2$.
+\end{proof}
+
+\begin{proposition}
+	Soit $\phi_0$ une isometrie linéaire et $\vec{u} \in \R^n$. L'isometrie
+	$\phi = t_{\vec{u}} \circ \phi_0$ admet un point fixe ssi $\vec{u} \in
+	\im(\phi_0 - \id)$ et alors l'ensemble des points fixes est un espace affine
+	de direction $\ker(\phi_0 - \id)$.
+\end{proposition}
+
+\begin{proposition}
+	Soit $\phi_0$ une isometrie linéaire, ona a la décomposition en somme directe
+	orthogonale
+	\begin{equation*}
+		\R^n = \ker(\phi_0 - \id) \oplus^\perp \im(\phi_0 - \id)
+	\end{equation*}
+\end{proposition}
+
+\begin{proof}
+	Soit $\vec{v} \in \ker(\phi_0 - \id)$ et $\vec{w} \in \im(\phi_0 - \id)$,
+	alors puisque $\phi_0(\vec{v}) = \vec{v}$ et il existe $\vec{z}$ t.q.
+	$\phi_0(\vec{z}) - \vec{z} =\vec{w}$, on a
+	\begin{equation*}
+		\inner{\vec{v}}{\vec{w}} = \inner{\phi_0(\vec{v})}{\phi_0(\vec{z})}
+		- \inner{\vec{v}}{\vec{z}} = 0
+	\end{equation*}
+	Ainsi $\ker(\phi_0 - \id)$ est perpendiculaire à $\im(\phi_0 - \id)$ et comme
+	par le theorème du rang
+	$\dim(\ker(\phi_0 - \id)) + \dim(\ker(\phi_0 - \id)) = n$, on a bien que
+	\begin{equation*}
+		\R^n = \ker(\phi_0 - \id) \oplus^\perp \ker(\phi_0 - \id)
+	\end{equation*}
+\end{proof}
+
+\begin{proposition}
+	Soit $\phi$ affine, alors $t_{\vec{v}}$ commute avec $\phi$ ssi $\vec{v} \in
+	\ker(\phi_0 - \id)$.
+\end{proposition}
+
+\begin{proof}	
+	On a que $t_{\vec{v}}$ commute avec $\phi$ ssi elle commute avec $\phi_0$,
+	car $\phi = t_{\vec{u}} \circ \phi_0$ et les translations commutent.
+	On a que $t_{\vec{v}}\circ \phi_0 \circ t_{\vec{-v}}$ est une application
+	affine de la même partie linéaire que $\phi_0$, ainsi elle est égale à
+	$\phi_0$ si il y a égalité en un seul point. En particulier si
+	\begin{equation*}
+		t_{\vec{v}} \circ \phi_0 \circ t_{\vec{-v}} (\vec{v}) = \phi_0(\vec{v})	
+		\iff \phi_0(\vec{v}) = \vec{v} \iff \vec{v} \in \ker(\phi_0 - \id)
+	\end{equation*}
 \end{proof}
