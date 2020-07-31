@@ -37,8 +37,8 @@
 
 \begin{proposition}
 	Soit $X$ un espace principal homogène sous l'action de $G$. Soit $\phi$ le
-	morphisme associé à cette action. Alors $\phi$ est injectif.
-	De plus $\im(\phi) \cong G$.
+	morphisme associé à cette action. Alors $\phi$ est injectif.  De plus
+	$\im(\phi) \cong G$.
 \end{proposition}
 
 \begin{proof}
@@ -62,10 +62,10 @@
 \end{notation}
 
 \begin{notation}
-	On notera l'action de $V$ sur $X$ vvec un $+$. Vu que $(V, +)$ est
-	commutatif, pour $\vec{v} \in V, \vec{x} \in X$, on a que
-	$\vec{v} + \vec{x} = \vec{x} + \vec{v}$ (c'est une action à droite ou à
-	gauche de manière équivalente).
+	On notera l'action de $V$ sur $X$ avec un $+$. Vu que $(V, +)$ est
+	commutatif, pour $\vec{v} \in V, \vec{x} \in X$, on a que $\vec{v} + \vec{x}
+	= \vec{x} + \vec{v}$ (c'est une action à droite ou à gauche de manière
+	équivalente).
 \end{notation}
 
 \begin{definition}
@@ -173,44 +173,36 @@ un unique vecteur $\vec{v}$ qui envoie $P$ sur $Q$.
 \subsubsection{Barycentres}
 
 \begin{proposition}
-	Soit $X$ un espace affine, $n \geq 1, (P_1, \dots, P_n) \in X^n$ un
-	$n$-uple de points et $(\lambda_1, \dots, \lambda_n) \in \K^n$ un
+	Soit $X$ un espace affine, $n \geq 1, \mathbf{P} = (P_1, \dots, P_n) \in X^n$ un
+	$n$-uple de points et $\vec{\lambda} = (\lambda_1, \dots, \lambda_n) \in \K^n$ un
 	$k$-uple de scalaires verifiant
 	\begin{equation*}
 		\sum_{i=1}^n \lambda_i = 1_{\K}
 	\end{equation*}
-	Soit $P_0 \in X$ un point de $X$, alors le vecteur
-	$\sum_{i=1}^{n} \lambda_i P_i - P_0 = (-1_K)P_0 + \sum_{i=1}^{n} \lambda_i P_i$
-	est bien défini et le point translaté
+	Soit $P_0 \in X$ un point de $X$, on définit
 	\begin{equation*}
-		P_0 + \left(\sum_{i=1}^{n}\lambda_i P_i - P_0 \right) \in X
+		\Bary(P_1, \dots, P_n; \lambda_1, \dots \lambda_n)
+		= \Bary(\mathbf{P}, \vec{\lambda}) = P_0 + \sum_{i=1}^n \lambda_i \vvec{P_0P_i}
 	\end{equation*}
-	ne dépend pas du choix de $P_0$. On l'appele le barycentre (algébrique) des
-	points $(P_1, \dots, P_n)$ par rapport aux poids $(\lambda_1, \dots, \lambda_n)$ 
-	et on le note
-	\begin{equation*}
-		\Bary(P_1, \dots, P_n; \lambda_1, \dots \lambda_n)	
-	\end{equation*}
+	Alors ce point est bien défini et ne dépend pas de $P_0$. On
+	l'appele le barycentre (algébrique) des
+	points $\mathbf{P} = (P_1, \dots, P_n)$ par rapport aux poids $\vec{\lambda}
+	= (\lambda_1, \dots, \lambda_n)$
 	Si tous les poids sont égaux ($\lambda_1 = \dots = \lambda_n$ de sorte que
 	$\sum_{i} \lambda_i = n \cdot \lambda_1 = 1_\K$), on note ce barycentre
 	\begin{equation*}
-		\Bary(P_1, \dots, P_n)
+		\Bary(P_1, \dots, P_n) = \Bary(\mathbf{P})
 	\end{equation*}
 \end{proposition}
 
 \begin{proof}
-	Soit $P'_0 \in X$ un autre point, on veut montrer que le vecteur qui envoie
-	le barycentre construit à partir de $P_0$ sur le barycentre construit à
-	partir de $P'_0$ est le vecteur nul.
-	\begin{equation*}
-		P_0 + \left(\sum_{i=1}^n \lambda_i P_i - P_0\right) -
-		\left(P'_0 + \left(\sum_{i=1}^n \lambda_i P_i - P'_0\right)\right)
-	\end{equation*}
-	et ceci vaut
-	\begin{equation*}
-		P_0 - P'_0 + \sum_{i=1}^n \lambda_i \left(P_i - P_i\right) + P'_0 - P_0
-		= \vvec{P'_0 P_0} + \vec{0} + \vvec{P_0 P'_0} = \vec{0}
-	\end{equation*}
+	Soit $P'_0 \in X$, alors 
+	\begin{align*}
+		P_0 + \sum_{i=1}^n \lambda_i \vvec{P_0P_i} - \left(P'_0 + \sum_{i=1}^n \lambda_i
+		\vvec{P'_0P_i} \right) &= \sum_{i=1}^n \lambda_i (\vvec{P_0P_i} - \vvec{P'_0P_i}) +
+		\vvec{P'_0P_0} \\
+		&= \sum_{i=1}^n \lambda_i \vvec{P_0P'_0} + \vvec{P'_0P_0} = 0
+	\end{align*}
 \end{proof}
 
 \begin{remark}
@@ -273,12 +265,12 @@ un unique vecteur $\vec{v}$ qui envoie $P$ sur $Q$.
 \begin{definition}
 	Soient $X$ et $Y$ deux epsaces affines (de directions $V$ et $W$). Une
 	application $\phi: X \to Y$ est dite affine si elle preserve les barycentres:
-	pour tout $(P_1, \dots, P_n) \subset X^n$ et tout
-	$(\lambda_1, \dots, \lambda_n) \in \K^n$ verifiant
+	pour tout $\mathbf{P} \in X^n$ et tout
+	$\vec{\lambda} \in \K^n$ verifiant
 	$\sum_{i=1}^n \lambda_i = 1$, on a
 	\begin{equation*}
-		\phi(\Bary(P_1, \dots, P_n; \lambda_1, \dots, \lambda_n)) = 
-		\Bary(\phi(P_1), \dots, \phi(P_n); \lambda_1, \dots, \lambda_n)
+		\phi(\Bary(\mathbf{P}, \vec{\lambda})) = 
+		\Bary(\phi(\mathbf{P}), \vec{\lambda})
 	\end{equation*}
 \end{definition}
 
@@ -544,9 +536,9 @@ un unique vecteur $\vec{v}$ qui envoie $P$ sur $Q$.
 \begin{definition}
 	Soit $(\vec{v}_1, \dots, \vec{v}_m)$ une famille de vecteurs
 	perpendiculaires. Alors si tous le svecteurs sont de norme $1$, alors on dit
-	que la famille est orthonormée. Si $m = \dim E$, cette famille est
-	une base et est appellée une base orthogonale (resp. orthonormale si la
-	famille est orthonormée)
+	que la famille est orthonormée. Si $m = \dim E$, cette famille est une base
+	et est appellée une base orthogonale (resp. orthonormale si la famille est
+	orthonormée)
 \end{definition}
 
 \begin{proposition}
@@ -649,8 +641,8 @@ un unique vecteur $\vec{v}$ qui envoie $P$ sur $Q$.
 \end{definition}
 
 \begin{theorem}
-	Une isometrie est une transformation affine. Ainsi les groupes
-	$\Isom(\R^n), T(\R^n)$ et $\Isom(\R^n)_0$ sont des sous-groupes du groupe des
+	Une isometrie est une transformation affine. Ainsi les groupes $\Isom(\R^n),
+	T(\R^n)$ et $\Isom(\R^n)_0$ sont des sous-groupes du groupe des
 	transformations affines $A\GL(\R^n)$. Le groupe $\Isom(\R^n)_0$ est un
 	sous-groupe du groupe $\GL(\R^n)$ des applications linéaires inversibles de
 	$\R^n$. Le sous-groupe $T(\R^n)$ est distingué dans $\Isom(\R^n)$ et
@@ -667,11 +659,11 @@ un unique vecteur $\vec{v}$ qui envoie $P$ sur $Q$.
 
 \begin{proof}
 	On a que $T(\R^n), \Isom(\R^n)_0 \subset \Isom(\R^n)$, ce sont des
-	sous-groupes du groupe des transformations affines.
-	Soit $\phi\in\Isom(\R^n)$. On décompose $\phi$ en une translation et une
-	isometrie fixant l'origine fixant $\vec{0}$.
-	Posons $\phi_0 = t_{-\phi(\vec{0})} \circ \phi$, alors $\phi_0$ est une
-	isometrie (c'est la composée de 2 isometries). De plus
+	sous-groupes du groupe des transformations affines.  Soit
+	$\phi\in\Isom(\R^n)$. On décompose $\phi$ en une translation et une isometrie
+	fixant l'origine fixant $\vec{0}$.  Posons $\phi_0 = t_{-\phi(\vec{0})} \circ
+	\phi$, alors $\phi_0$ est une isometrie (c'est la composée de 2 isometries).
+	De plus
 	\begin{equation*}
 		\phi_0(0) = t_{-\phi(0)} \circ \phi(0) = \phi(0) - \phi(0) = 0
 	\end{equation*}
@@ -835,19 +827,18 @@ où pour $1 \leq j \leq n$
 
 \begin{proof}
 	$W^\perp$ est un SEV de $\R^n$ et $\R^n = W\oplus W^\perp$. Soit $\vec{u} \in
-	W^\perp$, on va montrer que $\phi(\vec{u}) \in W^\perp$.
-	On a que pour tout $\vec{w} \in W$, $\inner{\vec{u}}{\vec{w}} = 0$. En
-	particulier, puisque $\phi$ est injective, et $\phi(W) \subset W$, ceci
-	implique que $\phi(W) = W$ et donc pour tout $\vec{w} \in W$, 
-	$\phi^{-1}(\vec{w}) \in W$, donc $\inner{\vec{u}}{\phi^{-1}(\vec{w})} = 0$,
-	et par conséquent, $\inner{\phi(\vec{u})}{\vec{w}} = 0$ pour tout 
-	$\vec{u} \in W^\perp$, ainsi $W^\perp$ est stable par $\phi$.
-	La matrice de l'application $\phi$ restreinte à $W$ et $W'$, est orthogonale
-	dans des BON de $W$ et $W^\perp$ resp. Si on a deux telles bases, $B_W$ et
-	$B_{W^\perp}$, alors leur union $B$ est une BON de $\R^n$. Comme
-	$\phi(W) \subset W$ et $\phi(W^\perp) \subset W^\perp$, la matrice de 
-	$\phi$ dans la base $B$ est une matrice bloc formée des deux matrices de
-	$\phi$ associées.
+	W^\perp$, on va montrer que $\phi(\vec{u}) \in W^\perp$.  On a que pour tout
+	$\vec{w} \in W$, $\inner{\vec{u}}{\vec{w}} = 0$. En particulier, puisque
+	$\phi$ est injective, et $\phi(W) \subset W$, ceci implique que $\phi(W) = W$
+	et donc pour tout $\vec{w} \in W$, $\phi^{-1}(\vec{w}) \in W$, donc
+	$\inner{\vec{u}}{\phi^{-1}(\vec{w})} = 0$, et par conséquent,
+	$\inner{\phi(\vec{u})}{\vec{w}} = 0$ pour tout $\vec{u} \in W^\perp$, ainsi
+	$W^\perp$ est stable par $\phi$.  La matrice de l'application $\phi$
+	restreinte à $W$ et $W'$, est orthogonale dans des BON de $W$ et $W^\perp$
+	resp. Si on a deux telles bases, $B_W$ et $B_{W^\perp}$, alors leur union $B$
+	est une BON de $\R^n$. Comme $\phi(W) \subset W$ et $\phi(W^\perp) \subset
+	W^\perp$, la matrice de $\phi$ dans la base $B$ est une matrice bloc formée
+	des deux matrices de $\phi$ associées.
 \end{proof}
 
 \begin{theorem}
@@ -937,3 +928,146 @@ où pour $1 \leq j \leq n$
 		\iff \phi_0(\vec{v}) = \vec{v} \iff \vec{v} \in \ker(\phi_0 - \id)
 	\end{equation*}
 \end{proof}
+
+\subsection{Classification et nomenclature quand $n=3$}
+
+\subsubsection{Rotations}
+Si $\phi \in \Isom(\R^3)_0$ est une matrice speciale, il existe une base $B =
+(\vec{e}_1, \vec{e}_2, \vec{e}_3)$ de
+$\R^3$ telle que
+\begin{equation*}
+	M_{\phi, B} = 
+	\begin{pmatrix}
+		1 & 0 & 0 \\
+		0 & c & -s \\
+		0 & s & c
+	\end{pmatrix}
+	\in SO_3(\R)\textrm{ avec }M_2 = 
+	\begin{pmatrix}
+		c & -s \\
+		s & c
+	\end{pmatrix}
+	\in SO_2(\R)
+\end{equation*}
+On a alors que $c^2 + s^2 = 1, c = \cos(\theta), s = \sin(\theta)$.
+On dit que $\phi$ c'est une \emph{rotation} d'axe $\R\vec{e}_1$ et d'angle
+$\theta$, ou $c + is$ en paramètre complexe. L'ensemble des points fixes de
+$\phi$ est la
+droite $\R\vec{e}_1$.
+\begin{remark}
+	La base doit être orientée, sinon l'angle peut changer de signe. Mais la
+	plupart du temp on s'interessera à l'angle de la rotation au signe près.
+\end{remark}
+
+\subsubsection{Symétrie orthogonale}
+
+Soit $\phi \in \Isom(\R^3)_0^-$ une isometrie non-speciale, supposons que la
+matrice de $\phi$ soit de la forme
+\begin{equation*}
+	M_{\phi, B} = 
+	\begin{pmatrix}
+		1 & 0 & 0 \\
+		0 & a & b \\
+		0 & c & d
+	\end{pmatrix}
+	\in O_3(\R)^-
+	\textrm{ avec }
+	M_2 = 
+	\begin{pmatrix}
+		a & b \\
+		c & d
+	\end{pmatrix}
+	\in O_2(\R)^-
+\end{equation*}
+C'est une symétrie dans le plan orthogonal $\vec{e}_1^\perp = \R\vec{e}_2 +
+\R\vec{e}_3$. Soit $\vec{e}_2'$ un vecteur appartenant à l'axe de cette
+symétrie, et $\vec{e}_3'$ un vecteur unitaire perpendiculaire à $\vec{e}_1$ et
+$\vec{e}_2'$. Alors a on que pour $B' = (\vec{e}_1, \vec{e}_2', \vec{e}_3')$
+\begin{equation*}
+	M_{\phi, B'} =
+	\begin{pmatrix}
+		1 & 0 & 0 \\
+		0 & 1 & 0 \\
+		0 & 0 & -1
+	\end{pmatrix}
+\end{equation*}
+dans ce cas c'est une symétrie orthogonale par rapport au plan
+$\vec{e}_3^\perp$.
+
+\subsubsection{Anti-rotation}
+
+Le dernier cas est celui d'une matrice de la forme
+\begin{equation*}
+	M_{\phi, B} =
+	\begin{pmatrix}
+		-1 & 0 & 0 \\
+		0 & c & -s \\
+		0 & s & c
+	\end{pmatrix}
+	\in O_3(\R)^-\textrm{ avec }M_2 = 
+	\begin{pmatrix}
+		c & -s \\
+		s & c
+	\end{pmatrix}
+\in SO_2(\R)
+\end{equation*}
+avec $c = \cos(\theta)$ et $s = \sin(\theta)$. Alors $\phi$ performe une
+rotation dans le plan orthogonal $\vec{e}_1^\perp$ combinée avec une symétrie
+par rapport au plan $\vec{e}_1^\perp$.
+
+\begin{remark}
+	Les anti-rotations d'angle $0$ sont exactement les symétries par rapport à
+	un plan.
+\end{remark}
+
+\begin{remark}
+	Une anti-rotation d'angle $\pi$ est l'application linéaire $-\id$ qui est
+	une symétrie par rapport au centre $\vec{0}$.
+\end{remark}
+
+\subsubsection{Isometries affines}
+
+Considérons une isometrie affine $\phi \in \Isom(\R^3)$, alors $\phi$ se
+décompose sous la forme
+\begin{equation*}
+	\phi = t_\vec{u} \circ t_\vec{v} \circ \phi_0
+\end{equation*}
+avec
+\begin{equation*}
+	\vec{u} + \vec{v} = \phi(\vec{0}),
+	\vec{u} \in \ker(\phi_0 - \id),
+	\vec{v} \in \im(\phi_0 - \id)
+\end{equation*}
+
+\subsubsection{Déplacements affines}
+\begin{enumerate}
+	\item Si $\phi_0 = \id$, $\phi$ est une translation
+	\item Si $\phi_0$ est une rotation non-triviale autour de l'axe
+		$\ker(\phi_0 - \id)$ et $\vec{u} = \vec{0}$, alors l'ensemble des points
+		fixes de $\phi$ est une droite de même direction que
+		$\ker(\phi_0 - \id)$. On dit que $\phi$ est une \emph{rotation affine}.
+		Si la rotation est d'angle $\pi$, c'est une 
+		symétrie orthogonale par rapport à l'axe $\ker(\phi_0 - \id)$.
+	\item Si $\phi_0$ est une rotation non-triviale autour de l'axe
+		$\ker(\phi_0 - \id)$ et $\vec{u} \neq \vec{0}$, alors $\phi$ n'admet pas
+		de points fixes. C'est une composée de rotation affine et translation le
+		long de l'axe $\R\vec{u}$. On appelle $\phi$ un \emph{vissage}.
+\end{enumerate}
+
+\subsubsection{Antidéplacements affines}
+\begin{enumerate}
+	\item Si $\phi_0 = -\id$, alors $\phi$ admet un unique point fixe et c'est
+		la \emph{reflexion ou symétrie centrale} par rapport à ce point.
+	\item Si $\phi_0$ est une symétrie par rapport au plan $\ker(\phi_0 - \id)$
+		et $\vec{u} = \vec{0}$, alors $\phi$ est une \emph{réflexion ou une
+		symétrie} par rapport à un plan parallèle à $\ker(\phi_0 - \id)$.
+	\item Si $\phi_0$ est une symétrie par rapport au plan $\ker(\phi_0 - \id)$
+		et $\vec{u} \neq \vec{0}$, alors $\phi$ n'admet pas de points fixes, 
+		c'est la composée d'une symétrie et translation de vecteur $\vec{u}$. On
+		appelle $\phi$ une \emph{symétrie plane glissée}.
+	\item Si $\phi_0$ est une anti-rotation d'axe $\ker(\phi_0 + \id)$ et
+		d'angle complexe $\neq 1 ou 0$, on a $\ker(\phi_0 - \id) = \{\vec{0}\}$
+		et donc forcément $\vec{u} = \vec{0}$. Ainsi $\phi$ a exactement un point
+		fixe. $\phi$ est appellée \emph{anti-rotation} autour de l'axe affine
+		passant par son point fixe et de direction $\ker(\phi_0 + \id)$
+\end{enumerate}
