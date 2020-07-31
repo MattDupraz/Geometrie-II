@@ -469,12 +469,12 @@ un unique vecteur $\vec{v}$ qui envoie $P$ sur $Q$.
 	On déduit de la symétrie et de la bilinéarité du produit scalairs, de
 	propriétés dites de \emph{polarisation}:
 	\begin{align*}
-		\|\vec{u} \pm \vec{v}\|^2 &= \|\vec{u}\|^2 \pm 2 \langle \vec{u},
+		\|\vec{u} \pm \vec{v}\|^2 &= \|\vec{u}\|^2 + \|\vec{v}\|^2 \pm 2 \langle \vec{u},
 		\vec{v} \rangle \\
 		\langle \vec{u}, \vec{v} \rangle &= \frac{1}{2}(\|\vec{u}\|^2 +
-			\|\vec{v}\| - \|\vec{u} - \vec{v}\|^2) \\
-		\langle \vec{u}, \vec{v} \rangle &= \frac{1}{4}(\|\vec{u} -
-			\vec{v}\|^2 - \|\vec{u} - \vec{v}\|^2)
+			\|\vec{v}\|^2 - \|\vec{u} - \vec{v}\|^2) \\
+		&= \frac{1}{2}(\|\vec{u} + \vec{v} \|^2 - \|\vec{u}\|^2 - \|\vec{v}\|^2)\\
+		&= \frac{1}{4}(\|\vec{u} + \vec{v}\|^2 - \|\vec{u} - \vec{v}\|^2)
 	\end{align*}
 \end{proposition}
 
@@ -535,7 +535,7 @@ un unique vecteur $\vec{v}$ qui envoie $P$ sur $Q$.
 
 \begin{definition}
 	Soit $(\vec{v}_1, \dots, \vec{v}_m)$ une famille de vecteurs
-	perpendiculaires. Alors si tous le svecteurs sont de norme $1$, alors on dit
+	perpendiculaires. Alors si tous les vecteurs sont de norme $1$, alors on dit
 	que la famille est orthonormée. Si $m = \dim E$, cette famille est une base
 	et est appellée une base orthogonale (resp. orthonormale si la famille est
 	orthonormée)
@@ -589,8 +589,8 @@ un unique vecteur $\vec{v}$ qui envoie $P$ sur $Q$.
 	\begin{align*}
 		\inner{\phi(\vec{u})}{\phi(\vec{v})} &= \frac{1}{2}(\|\phi(\vec{u})\|^2 +	
 		\|\phi(\vec{v})\|^2 - \| \phi(\vec{u}) - \phi(\vec{v}) \|^2)\\
-		&= \frac{1}{2}(\| \vec{u} \|^2 + \| \vec{v} \|^2 + d(\phi(P), \phi(Q))^2)\\
-		&= \frac{1}{2}(\| \vec{u} \|^2 + \| \vec{v} \|^2 + d(P, Q)^2)\\
+		&= \frac{1}{2}(d(0, \phi(\vec{u}))^2 + d(0,  \phi(\vec{v}))^2 + d(\phi(P), \phi(Q))^2)\\
+		&= \frac{1}{2}(d(0, \vec{u})^2 + d(0, \vec{v})^2 + d(P, Q)^2)\\
 		&= \frac{1}{2}(\| \vec{u} \|^2 + \| \vec{v} \|^2
 			+ \|\vec{u} - \vec{v}\|^2)\\
 		&= \inner{\vec{u}}{\vec{v}}
@@ -689,7 +689,7 @@ un unique vecteur $\vec{v}$ qui envoie $P$ sur $Q$.
 
 \begin{proof}
 	On a que les condition 1. et 2. sont équivalentes et charactéristiques des
-	isometries. Si $\phi$ preserve le produit scalaire, alors
+	isometries linéaires. Si $\phi$ preserve le produit scalaire, alors
 	\begin{equation*}
 		\inner{\phi(\vec{u})}{\vec{v}} =
 		\inner{\phi(\vec{u})}{\phi(\phi^{-1}(\vec{v}))} =
@@ -698,7 +698,7 @@ un unique vecteur $\vec{v}$ qui envoie $P$ sur $Q$.
 	Réciproquement si 3. est vérifiée, alors
 	\begin{equation*}
 		\inner{\phi(\vec{u})}{\phi(\vec{v})} =
-		\inner{\vec{u}}{\phi(\phi^{-1}(\vec{v}))} =
+		\inner{\vec{u}}{\phi^{-1}(\phi(\vec{v}))} =
 		\inner{\vec{u}}{\vec{v}}
 	\end{equation*}
 	Soit $\phi$ une isometrie linéaire et $(\vec{e}_i)_{i\leq n}$ une base
