@@ -62,7 +62,7 @@
 \end{notation}
 
 \begin{notation}
-	On notera l'action de $V$ sur $X$ vvec un $+$. Vu que $(V, +)$ est
+	On notera l'action de $V$ sur $X$ avec un $+$. Vu que $(V, +)$ est
 	commutatif, pour $\vec{v} \in V, \vec{x} \in X$, on a que $\vec{v} + \vec{x}
 	= \vec{x} + \vec{v}$ (c'est une action à droite ou à gauche de manière
 	équivalente).
@@ -173,44 +173,36 @@ un unique vecteur $\vec{v}$ qui envoie $P$ sur $Q$.
 \subsubsection{Barycentres}
 
 \begin{proposition}
-	Soit $X$ un espace affine, $n \geq 1, (P_1, \dots, P_n) \in X^n$ un
-	$n$-uple de points et $(\lambda_1, \dots, \lambda_n) \in \K^n$ un
+	Soit $X$ un espace affine, $n \geq 1, \mathbf{P} = (P_1, \dots, P_n) \in X^n$ un
+	$n$-uple de points et $\vec{\lambda} = (\lambda_1, \dots, \lambda_n) \in \K^n$ un
 	$k$-uple de scalaires verifiant
 	\begin{equation*}
 		\sum_{i=1}^n \lambda_i = 1_{\K}
 	\end{equation*}
-	Soit $P_0 \in X$ un point de $X$, alors le vecteur
-	$\sum_{i=1}^{n} \lambda_i P_i - P_0 = (-1_K)P_0 + \sum_{i=1}^{n} \lambda_i P_i$
-	est bien défini et le point translaté
+	Soit $P_0 \in X$ un point de $X$, on définit
 	\begin{equation*}
-		P_0 + \left(\sum_{i=1}^{n}\lambda_i P_i - P_0 \right) \in X
+		\Bary(P_1, \dots, P_n; \lambda_1, \dots \lambda_n)
+		= \Bary(\mathbf{P}, \vec{\lambda}) = P_0 + \sum_{i=1}^n \lambda_i \vvec{P_0P_i}
 	\end{equation*}
-	ne dépend pas du choix de $P_0$. On l'appele le barycentre (algébrique) des
-	points $(P_1, \dots, P_n)$ par rapport aux poids $(\lambda_1, \dots, \lambda_n)$ 
-	et on le note
-	\begin{equation*}
-		\Bary(P_1, \dots, P_n; \lambda_1, \dots \lambda_n)	
-	\end{equation*}
+	Alors ce point est bien défini et ne dépend pas de $P_0$. On
+	l'appele le barycentre (algébrique) des
+	points $\mathbf{P} = (P_1, \dots, P_n)$ par rapport aux poids $\vec{\lambda}
+	= (\lambda_1, \dots, \lambda_n)$
 	Si tous les poids sont égaux ($\lambda_1 = \dots = \lambda_n$ de sorte que
 	$\sum_{i} \lambda_i = n \cdot \lambda_1 = 1_\K$), on note ce barycentre
 	\begin{equation*}
-		\Bary(P_1, \dots, P_n)
+		\Bary(P_1, \dots, P_n) = \Bary(\mathbf{P})
 	\end{equation*}
 \end{proposition}
 
 \begin{proof}
-	Soit $P'_0 \in X$ un autre point, on veut montrer que le vecteur qui envoie
-	le barycentre construit à partir de $P_0$ sur le barycentre construit à
-	partir de $P'_0$ est le vecteur nul.
-	\begin{equation*}
-		P_0 + \left(\sum_{i=1}^n \lambda_i P_i - P_0\right) -
-		\left(P'_0 + \left(\sum_{i=1}^n \lambda_i P_i - P'_0\right)\right)
-	\end{equation*}
-	et ceci vaut
-	\begin{equation*}
-		P_0 - P'_0 + \sum_{i=1}^n \lambda_i \left(P_i - P_i\right) + P'_0 - P_0
-		= \vvec{P'_0 P_0} + \vec{0} + \vvec{P_0 P'_0} = \vec{0}
-	\end{equation*}
+	Soit $P'_0 \in X$, alors 
+	\begin{align*}
+		P_0 + \sum_{i=1}^n \lambda_i \vvec{P_0P_i} - \left(P'_0 + \sum_{i=1}^n \lambda_i
+		\vvec{P'_0P_i} \right) &= \sum_{i=1}^n \lambda_i (\vvec{P_0P_i} - \vvec{P'_0P_i}) +
+		\vvec{P'_0P_0} \\
+		&= \sum_{i=1}^n \lambda_i \vvec{P_0P'_0} + \vvec{P'_0P_0} = 0
+	\end{align*}
 \end{proof}
 
 \begin{remark}
@@ -273,12 +265,12 @@ un unique vecteur $\vec{v}$ qui envoie $P$ sur $Q$.
 \begin{definition}
 	Soient $X$ et $Y$ deux epsaces affines (de directions $V$ et $W$). Une
 	application $\phi: X \to Y$ est dite affine si elle preserve les barycentres:
-	pour tout $(P_1, \dots, P_n) \subset X^n$ et tout
-	$(\lambda_1, \dots, \lambda_n) \in \K^n$ verifiant
+	pour tout $\mathbf{P} \in X^n$ et tout
+	$\vec{\lambda} \in \K^n$ verifiant
 	$\sum_{i=1}^n \lambda_i = 1$, on a
 	\begin{equation*}
-		\phi(\Bary(P_1, \dots, P_n; \lambda_1, \dots, \lambda_n)) = 
-		\Bary(\phi(P_1), \dots, \phi(P_n); \lambda_1, \dots, \lambda_n)
+		\phi(\Bary(\mathbf{P}, \vec{\lambda})) = 
+		\Bary(\phi(\mathbf{P}), \vec{\lambda})
 	\end{equation*}
 \end{definition}
 

@@ -189,11 +189,12 @@ compact (fermé, borné) et d'intérieur $\interior{\mathbf{T}}$ non vide.
 	du pavage $\mathcal{P} = \mathcal{P}(\mathbf{T}, \Psi)$ qui intersectent B est fini.
 \end{lemma}
 \begin{proof}
-	Soit $\vec{x}_0 \in \R^2$ et $r_0 > 0$ tel que
+	Soit $\vec{x}_0 \in \mathbf{T}^\circ$ et $r_0 > 0$ tel que
 	$B(\vec{x}_0, r_0) \subset \mathbf{T}$, et
-	soit $R_0 > 0$ tel que $B(\vec{0}, R_0) \supset \mathbf{T}$.
+	posons $d_{max} = \max \{\|\vec{x} - \vec{y}\|:\vec{x}, \vec{y} \in
+	\mathbf{T}\}$.
 	Soit $\mathbf{T}' \in \mathcal{P}$ une tuile du pavage qui intersecte $B$,
-	alors $\mathbf{T}' \subset B(\vec{x}, r + 2R_0)$.
+	alors $\mathbf{T}' \subset B(\vec{x}, r + d_{max})$.
 	Notons $N$ le nombre de tuiles de $\mathcal{P}$ qui intersectent $B$.
 	Alors puisque les tuiles sont d'aire non-nul, on a que
 	l'aire de la reunion de toutes les tuiles qui intersectent $B$
@@ -201,10 +202,10 @@ compact (fermé, borné) et d'intérieur $\interior{\mathbf{T}}$ non vide.
 	\begin{equation*}
 		Aire(B(\vec{x_0}, r_0)) \times N = \pi r_0^2 \times N.
 	\end{equation*}
-	Cette aire est majorée par l'aire du disque $D(\vec{x}, r + 2R_0)$,
+	Cette aire est majorée par l'aire du disque $D(\vec{x}, r + d_{max})$,
 	on a donc
 	\begin{equation*}
-		\pi r_0^2 \times N \leq \pi(r + 2R_0)^2
+		\pi r_0^2 \times N \leq \pi(r + d_{max})^2
 	\end{equation*}
 	et ainsi $N < +\infty$
 \end{proof}
@@ -379,7 +380,7 @@ compact (fermé, borné) et d'intérieur $\interior{\mathbf{T}}$ non vide.
 	Soit $\mathcal{P}$ un pavage régulier et $G$ son groupe d'isometries,
 	alors 
 	\begin{equation*}
-		G_0^+ \in \{\mu_1, \mu_2, \mu_3, \mu_4, \mu_6\}
+		G_0^+ \subset \{\mu_1, \mu_2, \mu_3, \mu_4, \mu_6\}
 	\end{equation*}
 	où $\mu_n = \{z \in \C^1\ |\ z^n = 1\}$ est l'ensemble des racines n-ièmes de
 	l'unité. De plus, il existe $\gamma_0 \in \C^*$ tel que
@@ -481,7 +482,7 @@ compact (fermé, borné) et d'intérieur $\interior{\mathbf{T}}$ non vide.
 		r' = \Ad(t_{-z_r})(r) = r_{\omega, 0}
 	\end{equation*}
 	car $z_r$ est le centre de $r$. Ainsi quitte a remplacer le pavage
-	$\mathcal{P}'$ par le pavage $\mathcal{P}$, (de même pour les groupes des
+	$\mathcal{P}$ par le pavage $\mathcal{P}'$, (de même pour les groupes des
 	isometries) ainsi $r_{\omega, 0} \in G^+$. et
 	$G^+ = \langle r_{\omega, 0} \rangle$.
 
@@ -501,7 +502,7 @@ compact (fermé, borné) et d'intérieur $\interior{\mathbf{T}}$ non vide.
 		\Ad\left(\frac{1}{\gamma_0}\right)\Phi\right)
 	\end{equation*}
 	Les sous-groupes associés au groupe d'isometries $G'$ sont les conjugués par
-	$\frac{1}{\gamma_0}$. Ainsi quitte à remplacer $G'$ par $G$ et on peut
+	$\frac{1}{\gamma_0}$. Ainsi quitte à remplacer $G$ par $G'$ et on peut
 	supposer que $G$ vérifie $G_0^+ \subset G^+$ et $\Gamma=\Z + \gamma\Z$ avec
 	$\gamma$ de module $|\gamma| \geq 1$ et de longueur minimal parmi les
 	elements de $\Gamma \setminus \R$. Comme $G_0^+ \subset G^+$, tout élement
@@ -509,7 +510,7 @@ compact (fermé, borné) et d'intérieur $\interior{\mathbf{T}}$ non vide.
 	\begin{equation*}
 		r = t_z \circ r_{\alpha, 0}, z\in\C, \alpha \in G_0^+,
 	\end{equation*}
-	comme $G_0^+ \subset G_0^+$ il en résulte que
+	comme $G_0^+ \subset G^+$ il en résulte que
 	$t_z = r \circ r_{\alpha, 0}^{-1}$ et donc $z \in \Gamma$.
 	Ainsi $G^+$ est engendré par $T(\Gamma)$ et par $G_0^+$ et est donc, soit le
 	groupe engendré par
@@ -574,16 +575,14 @@ compact (fermé, borné) et d'intérieur $\interior{\mathbf{T}}$ non vide.
 	élements $\R$-linéairement indépendants: on en déduit que $\Gamma$ est un
 	réseau en suivant la preuve du Théorème \ref{thm:translations-reseau} et
 	comme $T(\Gamma) \subset G \subset G_\mathcal{P}$, $\mathcal{P}$ est un
-	pavage régulier.
-
-	$G$ possède un nombre infini d'élements, sinon $\mathcal{P}$ ne peut pas
+	pavage régulier, $G$ possède un nombre infini d'élements, sinon $\mathcal{P}$ ne peut pas
 	couvrir $\R^2$. On en déduit que $G^+$ est infini, car
 	$G = G^+ \sqcup sG^+$ où $s \in G \setminus G^+$.
 
-	Supposons que $\Gamma = \{0\}$ et qye tous les élements de $G^+$ soient des
+	Supposons que $\Gamma = \{0\}$ et que tous les élements de $G^+$ soient des
 	rotations de même centre, alors $G \cdot \mathbf{T}$ est un ensemble de copies de
 	$\mathbf{T}$ tournant autour de ce centre et ainsi est entièrement contenu
-	dans unu boule. Donc dans ce cas $G \cdot \mathbf{T}$
+	dans une boule. Donc dans ce cas $G \cdot \mathbf{T}$
 	ne peut pas recouvrir $\R^2$.
 
 	Supposons que $\Gamma = \{0\}$ et que $G^+$ contient deux rotations $r$ et
@@ -640,7 +639,7 @@ compact (fermé, borné) et d'intérieur $\interior{\mathbf{T}}$ non vide.
 	\end{equation*}
 	donc si $\alpha \neq -1, \gamma' = r_\alpha(\gamma)$ n'est pas colinéaire à
 	$\gamma$ et $T_G$ contient $t_\gamma$ et $t_{\gamma'}$.
-	Finalement, sie les seules rotations non-triviales sont d'angles $\alpha =
+	Finalement, si les seules rotations non-triviales sont d'angles $\alpha =
 	-1$, on retrouve que $G\cdot\mathbf{T}$ est contenu dans la réunion de
 	quatre bandes ce qui ne permet pas de couvrir le plan $\R^2$
 \end{proof}
