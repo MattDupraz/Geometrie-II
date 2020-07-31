@@ -185,7 +185,11 @@
 	$\mathcal{D}_G \subset E$ tel que
 	\begin{equation*}
 		E = \bigsqcup_{x \in \mathcal{D}_G} G \cdot x
-			= \bigsqcup_{g \in G} g \cdot \mathcal{D}_G
+% Cette definition n'est pas equivalente!!!
+% Contre-exemple: E = {a, b, c}, G = {id, (ab)} dans Bij(E)
+% Comme pour cet exemple il n'existe pas de domaine fondamental
+% avec la 2eme definition, on garde la premiere.
+%			= \bigsqcup_{g \in G} g \cdot \mathcal{D}_G
 	\end{equation*}
 \end{definition}
 
@@ -248,7 +252,7 @@
 	\end{equation*}
 	Montrons que $\psi$ est bien bijective:
 	\begin{itemize}
-		\item Surjectivité: Soit $y \in A$, alors il existe $g \in G$
+		\item Surjectivité: Soit $y \in G \cdot x$, alors il existe $g \in G$
 			tel que $y = g \cdot x$, et puisque $g \cdot x = \psi(g\,G_x)$,
 			on a bien que $y = \psi(g\,G_x)$
 		\item Injectivité: Soient $g, g' \in G$ tels que
@@ -318,7 +322,7 @@
 	\ref{cor:formule-orbite-stabilisateur}, $|G_x| = \frac{|G|}{|A|}$ et donc
 	\begin{equation*}
 		\sum_{A \in E/G} \sum_{x \in A} |G_x| = \sum_{A \in E/G} \sum_{x \in A}\frac{|G|}{|A|}
-		\sum_{A \in E/G} |A|\frac{|G|}{|A|} = |E/G||G|.
+		= \sum_{A \in E/G} |A|\frac{|G|}{|A|} = |E/G||G|.
 	\end{equation*}
 	D'où on obtient que
 	\begin{equation*}
@@ -408,7 +412,7 @@ Soit $A \in \mathcal{P}(G)$, on définit
 \end{theorem}
 
 \begin{proof}
-	Nous allons vérifies les quatrues conditions qui font de $(G/H, \cdot)$ un groupe
+	Nous allons vérifies les quatres conditions qui font de $(G/H, \cdot)$ un groupe
 	\begin{enumerate}
 		\item Soient $A, B, C \in G/H$, alors
 			\begin{align*}
